@@ -20,3 +20,24 @@ struct Quiz {
     }
     
 }
+
+struct Result {
+    let score: String
+    let correctAnswers: String
+    let incorrectAnswers: String
+    let timestamp: String
+    let displayName: String
+    
+    init(score: String, correctAnswers: String, incorrectAnswers: String, timestamp: String, displayName: String) {
+        self.score = score
+        self.correctAnswers = correctAnswers
+        self.incorrectAnswers = incorrectAnswers
+        self.timestamp = timestamp
+        self.displayName = displayName
+    }
+    
+    func toAnyObject() -> AnyObject {
+        return ["score": score, "correctAnswers": correctAnswers, "incorrectAnswers": incorrectAnswers, "timestamp": timestamp, "displayName": displayName] as AnyObject
+    }
+    
+}

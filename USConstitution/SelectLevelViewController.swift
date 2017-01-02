@@ -7,37 +7,52 @@
 //
 
 import UIKit
-
-enum Level {
-    case citizen
-    case patriot
-    case foundingFather
-}
+import Firebase
 
 class SelectLevelViewController: UIViewController {
     
     let screenRect = UIScreen.main.bounds
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let defaults = UserDefaults.standard
+    
+    var welcomeLabel: UILabel!
+    var logoutButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         let statusBarHeight = Int(UIApplication.shared.statusBarFrame.height)
         
         let pad = 20
+        let offset = 150
         
         let buttonWidth = Int(screenRect.width)-(pad*2)
-        let usableHeight = Int(screenRect.height)-statusBarHeight
+        let usableHeight = Int(screenRect.height)-statusBarHeight - offset
         let buttonHeight = usableHeight/3 - pad - (pad/3)
         
-        let citizenButton = UIButton(frame: CGRect(x: pad, y: pad + statusBarHeight, width: buttonWidth, height: buttonHeight))
-        let patriotButton = UIButton(frame: CGRect(x: pad, y: pad + statusBarHeight + (buttonHeight + pad), width: buttonWidth, height: buttonHeight))
-        let foundingFatherButton = UIButton(frame: CGRect(x: pad, y: pad + statusBarHeight + 2*(buttonHeight + pad), width: buttonWidth, height: buttonHeight))
-        citizenButton.addTarget(self, action: #selector(SelectLevelViewController.levelButtonPressed(_:)), for: .touchUpInside)
-        patriotButton.addTarget(self, action: #selector(SelectLevelViewController.levelButtonPressed(_:)), for: .touchUpInside)
-        foundingFatherButton.addTarget(self, action: #selector(SelectLevelViewController.levelButtonPressed(_:)), for: .touchUpInside)
+        logoutButton = UIButton(frame: CGRect(x: pad, y: 40, width: Int(screenRect.width/4), height: 30))
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.setTitleColor(.blue, for: .normal)
+        logoutButton.layer.borderWidth = 1
+        logoutButton.layer.borderColor = UIColor.blue.cgColor
+        logoutButton.layer.cornerRadius = 5
+        logoutButton.addTarget(self, action: #selector(self.logoutButtonPressed(_:)), for: .touchUpInside)
+        self.view.addSubview(logoutButton)
+        
+        welcomeLabel = UILabel(frame: CGRect(x: pad, y: 40, width: buttonWidth, height: 100))
+        welcomeLabel.textAlignment = .center
+        welcomeLabel.font = welcomeLabel.font.withSize(100)
+        welcomeLabel.adjustsFontSizeToFitWidth = true
+        welcomeLabel.text = "Welcome \(appDelegate.displayName!)!"
+        self.view.addSubview(welcomeLabel)
+        
+        let citizenButton = UIButton(frame: CGRect(x: pad, y: pad + offset + statusBarHeight, width: buttonWidth, height: buttonHeight))
+        let patriotButton = UIButton(frame: CGRect(x: pad, y: pad + offset + statusBarHeight + (buttonHeight + pad), width: buttonWidth, height: buttonHeight))
+        let foundingFatherButton = UIButton(frame: CGRect(x: pad, y: pad + offset + statusBarHeight + 2*(buttonHeight + pad), width: buttonWidth, height: buttonHeight))
         
         let buttons = [citizenButton, patriotButton, foundingFatherButton]
-        let colors = [UIColor(red:244.0/255.0,green:141.0/255.0,blue:62.0/255.0,alpha:1.0), UIColor(red:252.0/255.0,green:186.0/255.0,blue:99.0/255.0,alpha:1.0), UIColor(red:255.0/255.0,green:238.0/255.0,blue:174.0/255.0,alpha:1.0)]
+        let colors = [UIColor.blue, UIColor.blue, UIColor.blue]
         let titles = ["Citizen", "Patriot", "Founding Father"]
         
         var i = 0
@@ -45,28 +60,41 @@ class SelectLevelViewController: UIViewController {
             let btn = buttons[i]
             btn.backgroundColor = colors[i]
             btn.layer.cornerRadius = 5
-            //btn.titleLabel?.minimumScaleFactor = 0.01
-            //btn.titleLabel?.adjustsFontSizeToFitWidth = true
-            btn.titleLabel?.font = UIFont.systemFont(ofSize: 50)
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 30)
             btn.setTitle(titles[i], for: .normal)
             btn.titleLabel?.textColor = .white
             self.view.addSubview(btn)
+            btn.addTarget(self, action: #selector(self.levelButtonPressed(_:)), for: .touchUpInside)
             i += 1
         }
+        
+        patriotButton.isEnabled = defaults.bool(forKey: "patriotUnlocked")
+        foundingFatherButton.isEnabled = defaults.bool(forKey: "foundingFatherUnlocked")
+        if !patriotButton.isEnabled {
+            patriotButton.backgroundColor = patriotButton.backgroundColor?.withAlphaComponent(0.3)
+        }
+        if !foundingFatherButton.isEnabled {
+            foundingFatherButton.backgroundColor = foundingFatherButton.backgroundColor?.withAlphaComponent(0.3)
+        }
+        
+
     }
     
     func levelButtonPressed(_ sender: AnyObject) {
+        let qvc = storyboard?.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
+        self.present(qvc, animated: false, completion: nil)
         if sender.titleLabel??.text == "Citizen" {
-            let qvc = storyboard?.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
-            self.present(qvc, animated: true, completion: nil)
+            appDelegate.level = "citizen"
+        } else if sender.titleLabel??.text == "Patriot" {
+            appDelegate.level = "patriot"
+        } else {
+            appDelegate.level = "foundingFather"
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func logoutButtonPressed(_ sender: Any) {
+        FirebaseClient.sharedInstance.logout(vc: self)
     }
-
 
 }
 

@@ -14,7 +14,12 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var CitizenQuestions: [Quiz]!
+    var PatriotQuestions: [Quiz]!
+    var FoundingFatherQuestions: [Quiz]!
+    var uid: String!
+    var displayName: String!
+    var level: String!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
