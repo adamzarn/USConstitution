@@ -86,6 +86,7 @@ class SelectLevelViewController: UIViewController {
         while i < 3 {
             let btn = buttons[i]!
             let shift = CGFloat(buttonHeight/5)
+            btn.layer.borderWidth = 1
             btn.contentVerticalAlignment = .top
             btn.titleEdgeInsets = UIEdgeInsets(top: shift, left: 0, bottom: 0, right: 0)
             btn.backgroundColor = colors[i]
@@ -121,39 +122,41 @@ class SelectLevelViewController: UIViewController {
         }
         
         if userLevel == "New" {
-            subtitles[0]?.text = "Become a Citizen!"
-            subtitles[1]?.text = "Locked"
-            subtitles[2]?.text = "Locked"
-            patriotButton.isEnabled = false
-            patriotButton.backgroundColor = patriotButton.backgroundColor?.withAlphaComponent(0.3)
-            foundingFatherButton.isEnabled = false
-            foundingFatherButton.backgroundColor = foundingFatherButton.backgroundColor?.withAlphaComponent(0.3)
+            
+            configureButton(button: citizenButton, label: subtitles[0]!, text: "Become a Citizen!", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.3)
+            configureButton(button: patriotButton, label: subtitles[1]!, text: "Locked", backgroundColor: .white, borderColor: UIColor.lightGray.cgColor, titleColor: .lightGray, enabled: false, alpha: 0.3)
+            configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Locked", backgroundColor: .white, borderColor: UIColor.lightGray.cgColor, titleColor: .lightGray, enabled: false, alpha: 0.3)
+            
         } else if userLevel == "Citizen" {
-            subtitles[0]?.text = "Achieved"
-            subtitles[1]?.text = "Become a Patriot!"
-            subtitles[2]?.text = "Locked"
-            patriotButton.isEnabled = true
-            patriotButton.backgroundColor = patriotButton.backgroundColor?.withAlphaComponent(1.0)
-            foundingFatherButton.isEnabled = false
-            foundingFatherButton.backgroundColor = foundingFatherButton.backgroundColor?.withAlphaComponent(0.3)
+            
+            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: patriotButton, label: subtitles[1]!, text: "Become a Patriot!", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.3)
+            configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Locked", backgroundColor: .white, borderColor: UIColor.lightGray.cgColor, titleColor: .lightGray, enabled: false, alpha: 0.3)
+            
         } else if userLevel == "Patriot" {
-            subtitles[0]?.text = "Achieved"
-            subtitles[1]?.text = "Achieved"
-            subtitles[2]?.text = "Become a Founding Father!"
-            patriotButton.isEnabled = true
-            patriotButton.backgroundColor = patriotButton.backgroundColor?.withAlphaComponent(1.0)
-            foundingFatherButton.isEnabled = true
-            foundingFatherButton.backgroundColor = foundingFatherButton.backgroundColor?.withAlphaComponent(1.0)
+            
+            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: patriotButton, label: subtitles[1]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Become a Founding Father!", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.3)
+
         } else {
-            subtitles[0]?.text = "Achieved"
-            subtitles[1]?.text = "Achieved"
-            subtitles[2]?.text = "Achieved"
-            patriotButton.isEnabled = true
-            patriotButton.backgroundColor = patriotButton.backgroundColor?.withAlphaComponent(1.0)
-            foundingFatherButton.isEnabled = true
-            foundingFatherButton.backgroundColor = foundingFatherButton.backgroundColor?.withAlphaComponent(1.0)
+            
+            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: patriotButton, label: subtitles[1]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            
         }
     
+    }
+    
+    func configureButton(button: UIButton, label: UILabel, text: String, backgroundColor: UIColor, borderColor: CGColor, titleColor: UIColor, enabled: Bool, alpha: CGFloat) {
+        label.text = text
+        button.backgroundColor = backgroundColor
+        button.layer.borderColor = borderColor
+        button.setTitleColor(titleColor, for: .normal)
+        label.textColor = titleColor
+        button.isEnabled = true
+        button.backgroundColor = button.backgroundColor?.withAlphaComponent(alpha)
     }
     
     func levelButtonPressed(_ sender: AnyObject) {

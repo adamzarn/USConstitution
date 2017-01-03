@@ -13,6 +13,7 @@ class QuestionViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var questionLabel: UILabel!
+    let green = UIColor(red: 61.0/255.0, green: 175.0/255.0, blue: 109.0/255.0, alpha: 1.0)
     
     var answerButton1: UIButton!
     var answerButton2: UIButton!
@@ -169,7 +170,7 @@ class QuestionViewController: UIViewController {
         totalIncorrectAnswersLabel.text = "0"
         
         questionsRemainingLabel = UILabel(frame: CGRect(x: 30 + 2*width, y: screenRect.height/2 + 70 + space, width: width, height: 20))
-        questionsRemainingLabel.text = "Questions Left"
+        questionsRemainingLabel.text = "Left"
         
         totalQuestionsRemainingLabel = UILabel(frame: CGRect(x: 30 + 2*width, y: screenRect.height/2 + 90 + space, width: width, height: 20))
         totalQuestionsRemainingLabel.text = "20"
@@ -195,15 +196,13 @@ class QuestionViewController: UIViewController {
         startQuizButton.addTarget(self, action: #selector(QuestionViewController.nextButtonPressed(_:)), for: .touchUpInside)
         startQuizButton.isHidden = true
         
-        endQuizButton = UIButton(frame: CGRect(x:30,y:screenRect.height/2-50,width:screenRect.width-60, height: 100))
-        endQuizButton.setTitle("End Quiz", for: .normal)
+        endQuizButton = UIButton(frame: CGRect(x:10,y:screenRect.height-50,width:screenRect.width-20, height: 40))
+        endQuizButton.setTitle("Cancel", for: .normal)
         endQuizButton.titleLabel?.font = endQuizButton.titleLabel?.font.withSize(17.0)
         endQuizButton.backgroundColor = .red
         endQuizButton.titleLabel?.textAlignment = .center
         endQuizButton.layer.cornerRadius = 5
         endQuizButton.addTarget(self, action: #selector(QuestionViewController.endQuizButtonPressed(_:)), for: .touchUpInside)
-        endQuizButton.isHidden = true
-        endQuizButton.isEnabled = false
         self.view.addSubview(endQuizButton)
         
         saveAiv = UIActivityIndicatorView(frame: CGRect(x: 10, y: 10, width: 20, height: 20))
@@ -424,9 +423,8 @@ class QuestionViewController: UIViewController {
                 button.isEnabled = true
             }
             startQuizButton.setTitle("Next Question", for: .normal)
+            endQuizButton.setTitle("End Quiz", for: .normal)
             toggleButtonEnabled(button: startQuizButton)
-            endQuizButton.isHidden = false
-            endQuizButton.isEnabled = true
         } else {
             toggleButtonEnabled(button: startQuizButton)
             for button in buttons {
@@ -471,8 +469,8 @@ class QuestionViewController: UIViewController {
         totalIncorrectAnswersLabel.text = String(incorrect)
         for button in buttons {
             if button.titleLabel?.text == currentQuiz.correctAnswer {
-                button.backgroundColor = .green
-                button.layer.borderColor = UIColor.green.cgColor
+                button.backgroundColor = green
+                button.layer.borderColor = green.cgColor
                 button.setTitleColor(.white, for: .normal)
             }
         }
@@ -486,9 +484,9 @@ class QuestionViewController: UIViewController {
         let selection = sender as! UIButton
         if (sender as! UIButton).titleLabel?.text == currentQuiz.correctAnswer {
             correctAnswerActions()
-            selection.backgroundColor = .green
+            selection.backgroundColor = green
             selection.setTitleColor(.white, for: .normal)
-            selection.layer.borderColor = UIColor.green.cgColor
+            selection.layer.borderColor = green.cgColor
         } else {
             incorrectAnswerActions()
             selection.backgroundColor = .red
@@ -510,15 +508,21 @@ class QuestionViewController: UIViewController {
     
     func endQuizButtonPressed(_ sender: AnyObject) {
         
-        let alert = UIAlertController(title: endQuizButton.titleLabel?.text!, message: "This quiz will not be saved. Are you sure you want to continue?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(alert: UIAlertAction!) in
+        if sender.titleLabel??.text == "Cancel" {
             self.appDelegate.level = "None"
             let slvc = self.storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
             self.present(slvc, animated: false, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
-        
-        self.present(alert, animated: false, completion: nil)
+        } else {
+            let alert = UIAlertController(title: endQuizButton.titleLabel?.text!, message: "This quiz will not be saved. Are you sure you want to continue?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(alert: UIAlertAction!) in
+                self.appDelegate.level = "None"
+                let slvc = self.storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
+                self.present(slvc, animated: false, completion: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+            
+            self.present(alert, animated: false, completion: nil)
+        }
     
     }
 

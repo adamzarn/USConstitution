@@ -48,6 +48,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Password"
         emailTextField.autocapitalizationType = .none
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.autocorrectionType = .no
+        passwordTextField.autocorrectionType = .no
         passwordTextField.isSecureTextEntry = true
         
         if let email = defaults.value(forKey: "lastEmail") {
@@ -122,6 +125,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
     
