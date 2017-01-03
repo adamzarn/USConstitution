@@ -18,6 +18,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     
     var scope: UISegmentedControl!
     var level: UISegmentedControl!
+    var homeButton: UIButton!
     
     var myCitizenScores: [Result]! = []
     var myPatriotScores: [Result]! = []
@@ -55,12 +56,20 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         resultArrays = [[myCitizenScores,myPatriotScores,myFoundingFatherScores],[allCitizenScores,allPatriotScores,allFoundingFatherScores]]
         alreadyLoaded = [[false, false, false], [false, false, false]]
         
-        myTableView.frame = CGRect(x: 0, y: 100, width: width, height: height-100)
+        homeButton = UIButton(frame: CGRect(x:10,y:screenRect.height-50,width:screenRect.width-20, height: 40))
+        homeButton.setTitle("Home", for: .normal)
+        homeButton.backgroundColor = .red
+        homeButton.layer.borderWidth = 1
+        homeButton.layer.borderColor = UIColor.red.cgColor
+        homeButton.layer.cornerRadius = 5
+        homeButton.addTarget(self, action: #selector(self.homeButtonPressed(_:)), for: .touchUpInside)
         
-        
+        self.view.addSubview(homeButton)
         self.view.addSubview(scope)
         self.view.addSubview(level)
         self.view.addSubview(aiv)
+        
+        myTableView.frame = CGRect(x: 0, y: 100, width: width, height: height - 100 - homeButton.frame.height - 20)
         
         myTableView.isHidden = true
         aiv.startAnimating()
@@ -158,6 +167,13 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         }
     
     }
+    
+    func homeButtonPressed(_ sender: AnyObject) {
+        appDelegate.level = "None"
+        let slvc = storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
+        self.present(slvc, animated: false, completion: nil)
+    }
+
 
 }
 

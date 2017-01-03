@@ -38,12 +38,13 @@ class FirebaseClient: NSObject {
         })
     }
     
-    func addNewUser(uid: String, displayName: String, email: String, password: String) {
+    func addNewUser(uid: String, displayName: String, email: String, password: String, level: String) {
         
         let userRef = self.ref.child("Users/\(uid)")
         userRef.child("displayName").setValue(displayName)
         userRef.child("email").setValue(email)
         userRef.child("password").setValue(password)
+        userRef.child("level").setValue(level)
         
         let displayNameRef = self.ref.child("DisplayNames/\(uid)")
         displayNameRef.setValue(displayName)
@@ -61,25 +62,57 @@ class FirebaseClient: NSObject {
         })
     }
     
-    func getDisplayName(uid: String, completion: @escaping (_ displayName: String?, _ error: NSString?) -> ()) {
-        self.ref.child("DisplayNames").child(uid).observeSingleEvent(of: .value, with: { snapshot in
+    func getUserData(uid: String, completion: @escaping (_ user: User?, _ error: NSString?) -> ()) {
+        self.ref.child("Users").child(uid).observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
-                let displayName = snapshot.value as! String
-                completion(displayName, nil)
+                let userDict = snapshot.value as! NSDictionary
+                let displayName = userDict["displayName"] as! String
+                let email = userDict["email"] as! String
+                let password = userDict["password"] as! String
+                let level = userDict["level"] as! String
+                let user = User(displayName: displayName, email: email, password: password, level: level)
+                completion(user, nil)
             } else {
                 completion(nil, "No Display Name Exists")
             }
         })
     }
     
-    func postResult(uid: String, result: Result, level: String, completion: @escaping (_ success: Bool?, _ error: NSString?) -> ()) {
+    func postResult(uid: String, result: Result, level: String, userLevel: String, score: Double, maxScore: Double, completion: @escaping (_ message: String?, _ error: NSString?) -> ()) {
         let scoreRef = self.ref.child("Users/\(uid)/\(level)Results").childByAutoId()
         scoreRef.setValue(result.toAnyObject())
         
         let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
         topScoreRef.setValue(result.toAnyObject())
         
-        completion(true, nil)
+        let userLevelRef = self.ref.child("Users/\(uid)/level")
+        
+        var message: String!
+        if score >= 0.9*maxScore {
+            if userLevel == "New" && level == "citizen" {
+                message = "You are now a Citizen! \n The Patriot Quiz has been unlocked!"
+                userLevelRef.setValue("Citizen")
+                appDelegate.userLevel = "Citizen"
+            } else if userLevel == "Citizen" && level == "patriot" {
+                message = "You are now a Patriot! \n The Founding Father Quiz has been unlocked!"
+                userLevelRef.setValue("Patriot")
+                appDelegate.userLevel = "Patriot"
+            } else if userLevel == "Patriot" && level == "foundingFather" {
+                message = "You are now a Founding Father! \n Congratulations!"
+                userLevelRef.setValue("Founding Father")
+                appDelegate.userLevel = "Founding Father"
+            } else {
+                message = "Great job!"
+            }
+        } else {
+            if userLevel != "Founding Father" {
+                message = "Better luck next time. \n You need \(0.9*maxScore) points to unlock the next quiz."
+            } else {
+                message = "Not your best showing. \n Keep working at it though!"
+            }
+        }
+        
+        completion(message, nil)
     }
     
     func getScores(path: String, completion: @escaping (_ scores: [Result]?, _ error: NSString?) -> ()) {

@@ -47,7 +47,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
             tf!.autocapitalizationType = .none
             tf!.autocorrectionType = .no
             tf!.layer.borderWidth = 1
-            tf!.layer.borderColor = UIColor.black.cgColor
+            tf!.layer.borderColor = UIColor.lightGray.cgColor
             tf!.layer.cornerRadius = 5
             self.view.addSubview(tf!)
             tf!.delegate = self
@@ -86,6 +86,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     func displayNameAvailabilityCheck(displayName: String) {
         FirebaseClient.sharedInstance.getAllDisplayNames(completion: { (displayNames, error) -> () in
             if let displayNames = displayNames {
+                print(displayNames)
                 if displayNames.contains(displayName) {
                     self.aiv.isHidden = true
                     self.aiv.stopAnimating()
@@ -133,7 +134,8 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     func signedIn(user: FIRUser?) {
         appDelegate.uid = (user?.uid)!
         appDelegate.displayName = displayNameTextField.text!
-        FirebaseClient.sharedInstance.addNewUser(uid: (user?.uid)!, displayName: displayNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+        appDelegate.userLevel = "New"
+        FirebaseClient.sharedInstance.addNewUser(uid: (user?.uid)!, displayName: displayNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, level: "New")
         print("\(user?.email!) is signed in")
         let slvc = self.storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
         self.present(slvc, animated: false, completion: nil)
@@ -147,6 +149,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
     

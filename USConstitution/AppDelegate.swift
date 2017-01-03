@@ -20,10 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var uid: String!
     var displayName: String!
     var level: String!
+    var userLevel: String!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        
         return true
     }
 

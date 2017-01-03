@@ -35,6 +35,7 @@ class QuestionViewController: UIViewController {
     var totalIncorrectAnswersLabel: UILabel!
     var questionsRemainingLabel: UILabel!
     var totalQuestionsRemainingLabel: UILabel!
+    var resultLabel: UILabel!
     
     var labels: [UILabel]!
     
@@ -56,6 +57,10 @@ class QuestionViewController: UIViewController {
     var scoresButton: UIButton!
     
     var startQuizButton: UIButton!
+    var endQuizButton: UIButton!
+    
+    var maxScore: Double!
+    
     let screenRect = UIScreen.main.bounds
     
     override func viewDidLoad() {
@@ -71,6 +76,14 @@ class QuestionViewController: UIViewController {
         questionLabel.textAlignment = .center
         questionLabel.isHidden = true
         self.view.addSubview(questionLabel)
+        
+        //Result Label
+        resultLabel = UILabel(frame: CGRect(x:10,y:statusBarHeight,width:screenRect.width-20,height:screenRect.height/2 - 115 - statusBarHeight))
+        resultLabel.numberOfLines = 0
+        resultLabel.textAlignment = .center
+        resultLabel.font = UIFont.systemFont(ofSize: 24)
+        resultLabel.isHidden = true
+        self.view.addSubview(resultLabel)
         
         //Answer Buttons
         
@@ -182,6 +195,17 @@ class QuestionViewController: UIViewController {
         startQuizButton.addTarget(self, action: #selector(QuestionViewController.nextButtonPressed(_:)), for: .touchUpInside)
         startQuizButton.isHidden = true
         
+        endQuizButton = UIButton(frame: CGRect(x:30,y:screenRect.height/2-50,width:screenRect.width-60, height: 100))
+        endQuizButton.setTitle("End Quiz", for: .normal)
+        endQuizButton.titleLabel?.font = endQuizButton.titleLabel?.font.withSize(17.0)
+        endQuizButton.backgroundColor = .red
+        endQuizButton.titleLabel?.textAlignment = .center
+        endQuizButton.layer.cornerRadius = 5
+        endQuizButton.addTarget(self, action: #selector(QuestionViewController.endQuizButtonPressed(_:)), for: .touchUpInside)
+        endQuizButton.isHidden = true
+        endQuizButton.isEnabled = false
+        self.view.addSubview(endQuizButton)
+        
         saveAiv = UIActivityIndicatorView(frame: CGRect(x: 10, y: 10, width: 20, height: 20))
         saveAiv.color = .white
         saveAiv.isHidden = true
@@ -190,7 +214,7 @@ class QuestionViewController: UIViewController {
         
         //Home and Scores Buttons
         homeButton = UIButton(frame: CGRect(x:10,y:screenRect.height-50,width:screenRect.width/2-15, height: 40))
-        homeButton.backgroundColor = .blue
+        homeButton.backgroundColor = .red
         homeButton.setTitle("Home", for: .normal)
         homeButton.titleLabel?.textAlignment = .center
         homeButton.layer.cornerRadius = 5
@@ -209,19 +233,20 @@ class QuestionViewController: UIViewController {
         scoresButton.isEnabled = false
         self.view.addSubview(scoresButton)
         
-        level = "CitizenQuestions"
         //Get Questions
         
-        if level == "CitizenQuestions" {
+        if appDelegate.level == "citizen" {
+            self.level = "CitizenQuestions"
             if let quizzes = appDelegate.CitizenQuestions {
                 self.quizzes = quizzes
             }
-        } else if level == "PatriotQuestions" {
+        } else if appDelegate.level == "patriot" {
+            self.level = "PatriotQuestions"
             if let quizzes = appDelegate.PatriotQuestions {
                 self.quizzes = quizzes
-                
             }
         } else {
+            self.level = "FoundingFatherQuestions"
             if let quizzes = appDelegate.FoundingFatherQuestions {
                 self.quizzes = quizzes
             }
@@ -229,10 +254,11 @@ class QuestionViewController: UIViewController {
         
         if quizzes != nil {
         
-            self.loadingLabel.isHidden = true
-            self.startQuizButton.isHidden = false
-            self.startQuizButton.isEnabled = true
-            self.totalQuestionsRemainingLabel.text = String(quizzes.count)
+            loadingLabel.isHidden = true
+            startQuizButton.isHidden = false
+            startQuizButton.isEnabled = true
+            totalQuestionsRemainingLabel.text = String(quizzes.count)
+            maxScore = 20.0 * Double(quizzes.count)
         
         } else {
             aiv.startAnimating()
@@ -252,6 +278,7 @@ class QuestionViewController: UIViewController {
                     self.startQuizButton.isHidden = false
                     self.startQuizButton.isEnabled = true
                     self.totalQuestionsRemainingLabel.text = String(self.quizzes.count)
+                    self.maxScore = 20.0 * Double(self.quizzes.count)
                 } else {
                     print(error!)
                 }
@@ -303,11 +330,11 @@ class QuestionViewController: UIViewController {
             
             let result = Result(score: totalScoreLabel.text!, correctAnswers: totalCorrectAnswersLabel.text!, incorrectAnswers: totalIncorrectAnswersLabel.text!, timestamp: getCurrentDateAndTime(), displayName: appDelegate.displayName)
 
-            FirebaseClient.sharedInstance.postResult(uid: self.appDelegate.uid, result: result, level: self.appDelegate.level, completion: { (success, error) -> () in
-                if success! {
+            FirebaseClient.sharedInstance.postResult(uid: self.appDelegate.uid, result: result, level: self.appDelegate.level, userLevel: self.appDelegate.userLevel, score: score, maxScore: maxScore, completion: { (message, error) -> () in
+                if let message = message {
                     self.saveAiv.isHidden = true
                     self.saveAiv.stopAnimating()
-                    self.setUpResultsScreen()
+                    self.setUpResultsScreen(message: message)
                 } else {
                     print("failure")
                 }
@@ -315,13 +342,9 @@ class QuestionViewController: UIViewController {
         
         }
     }
-    
-    func startAnimating() {
 
-    }
-    
-
-    func setUpResultsScreen() {
+    func setUpResultsScreen(message: String) {
+        
         questionLabel.isHidden = true
         for button in buttons {
             button.isHidden = true
@@ -338,14 +361,18 @@ class QuestionViewController: UIViewController {
         totalScoreLabel.frame = CGRect(x: 10, y: screenRect.height/2 - 5, width: screenRect.width - 20, height: 100)
         totalScoreLabel.font = totalScoreLabel.font.withSize(50.0)
         
-        let width = (screenRect.width - 40)/3
+        resultLabel.isHidden = false
+        
+        resultLabel.text = message
+        
+        let width = (screenRect.width - 30)/2
         
         correctAnswersLabel.frame = CGRect(x: 10, y: screenRect.height/2 + 105, width: width, height: 50)
         totalCorrectAnswersLabel.frame = CGRect(x: 10, y: screenRect.height/2 + 160, width: width, height: 50)
         incorrectAnswersLabel.frame = CGRect(x: 20 + width, y: screenRect.height/2 + 105, width: width, height: 50)
         totalIncorrectAnswersLabel.frame = CGRect(x: 20 + width, y: screenRect.height/2 + 160, width: width, height: 50)
-        questionsRemainingLabel.frame = CGRect(x: 30 + 2*width, y: screenRect.height/2 + 105, width: width, height: 50)
-        totalQuestionsRemainingLabel.frame = CGRect(x: 30 + 2*width, y: screenRect.height/2 + 160, width: width, height: 50)
+        questionsRemainingLabel.isHidden = true
+        totalQuestionsRemainingLabel.isHidden = true
     }
     
     func getCurrentDateAndTime() -> String {
@@ -371,7 +398,7 @@ class QuestionViewController: UIViewController {
                 button.isEnabled = false
             }
             if quizzes.count == 0 {
-                startQuizButton.setTitle("Finish Quiz", for: .normal)
+                startQuizButton.setTitle("Save Quiz", for: .normal)
             }
         }
     }
@@ -382,7 +409,8 @@ class QuestionViewController: UIViewController {
         setUpView()
         
         if startQuizButton.titleLabel?.text == "Start Quiz" {
-            startQuizButton.frame = CGRect(x:10,y:screenRect.height-50,width:screenRect.width-20, height: 40)
+            startQuizButton.frame = CGRect(x:screenRect.width/2+5,y:screenRect.height-50,width:screenRect.width/2-15, height: 40)
+            endQuizButton.frame = CGRect(x:10,y:screenRect.height-50,width:screenRect.width/2-15, height: 40)
             startQuizButton.layer.cornerRadius = 5
             startQuizButton.titleLabel?.font = startQuizButton.titleLabel?.font.withSize(17.0)
             timeBar.isHidden = false
@@ -396,9 +424,11 @@ class QuestionViewController: UIViewController {
                 button.isEnabled = true
             }
             startQuizButton.setTitle("Next Question", for: .normal)
-            toggleButton(button: startQuizButton)
+            toggleButtonEnabled(button: startQuizButton)
+            endQuizButton.isHidden = false
+            endQuizButton.isEnabled = true
         } else {
-            toggleButton(button: startQuizButton)
+            toggleButtonEnabled(button: startQuizButton)
             for button in buttons {
                 button.backgroundColor = .white
                 button.layer.borderColor = UIColor.black.cgColor
@@ -409,6 +439,15 @@ class QuestionViewController: UIViewController {
         
     }
     
+    func toggleButtonEnabled(button: UIButton) {
+        button.isEnabled = !button.isEnabled
+        if button.isEnabled {
+            startQuizButton.backgroundColor = startQuizButton.backgroundColor?.withAlphaComponent(1.0)
+        } else {
+            startQuizButton.backgroundColor = startQuizButton.backgroundColor?.withAlphaComponent(0.3)
+        }
+    }
+    
     func toggleButton(button: UIButton) {
         button.isHidden = !button.isHidden
         button.isEnabled = !button.isEnabled
@@ -416,7 +455,7 @@ class QuestionViewController: UIViewController {
     
     func correctAnswerActions() {
         totalQuestionsRemainingLabel.text = String(quizzes.count)
-        toggleButton(button: startQuizButton)
+        toggleButtonEnabled(button: startQuizButton)
         let scoreDouble = Double(pointsLabel.text!)
         score = score + scoreDouble!
         correct = correct + 1
@@ -427,7 +466,7 @@ class QuestionViewController: UIViewController {
     
     func incorrectAnswerActions() {
         totalQuestionsRemainingLabel.text = String(quizzes.count)
-        toggleButton(button: startQuizButton)
+        toggleButtonEnabled(button: startQuizButton)
         incorrect = incorrect + 1
         totalIncorrectAnswersLabel.text = String(incorrect)
         for button in buttons {
@@ -458,6 +497,7 @@ class QuestionViewController: UIViewController {
         }
         if quizzes.count == 0 {
             startQuizButton.setTitle("Save Quiz", for: .normal)
+            endQuizButton.setTitle("Discard Quiz", for: .normal)
         }
         questionTimer.invalidate()
     }
@@ -466,6 +506,20 @@ class QuestionViewController: UIViewController {
         appDelegate.level = "None"
         let slvc = storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
         self.present(slvc, animated: false, completion: nil)
+    }
+    
+    func endQuizButtonPressed(_ sender: AnyObject) {
+        
+        let alert = UIAlertController(title: endQuizButton.titleLabel?.text!, message: "This quiz will not be saved. Are you sure you want to continue?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(alert: UIAlertAction!) in
+            self.appDelegate.level = "None"
+            let slvc = self.storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
+            self.present(slvc, animated: false, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        
+        self.present(alert, animated: false, completion: nil)
+    
     }
 
     func scoresButtonPressed(_ sender: AnyObject) {

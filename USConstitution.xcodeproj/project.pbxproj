@@ -16,6 +16,7 @@
 		DBAEB64A1E133C6300F9A540 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAEB6491E133C6300F9A540 /* QuestionViewController.swift */; };
 		DBAEB64C1E135AF900F9A540 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAEB64B1E135AF900F9A540 /* FirebaseClient.swift */; };
 		DBAEB64E1E135BC000F9A540 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAEB64D1E135BC000F9A540 /* Quiz.swift */; };
+		DBCB2E581E1B3E8900C3911C /* USDeclaration.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBCB2E571E1B397C00C3911C /* USDeclaration.ttf */; };
 		DBCB72C31E1322DF00F4B6F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB72C21E1322DF00F4B6F0 /* AppDelegate.swift */; };
 		DBCB72C51E1322DF00F4B6F0 /* SelectLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB72C41E1322DF00F4B6F0 /* SelectLevelViewController.swift */; };
 		DBCB72C81E1322DF00F4B6F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72C61E1322DF00F4B6F0 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		DBAEB64B1E135AF900F9A540 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		DBAEB64D1E135BC000F9A540 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		DBAEB64F1E13647700F9A540 /* USConstitution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = USConstitution.entitlements; sourceTree = "<group>"; };
+		DBCB2E571E1B397C00C3911C /* USDeclaration.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = USDeclaration.ttf; sourceTree = "<group>"; };
 		DBCB72BF1E1322DF00F4B6F0 /* USConstitution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USConstitution.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCB72C21E1322DF00F4B6F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBCB72C41E1322DF00F4B6F0 /* SelectLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLevelViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */,
 				DBCB72C61E1322DF00F4B6F0 /* Main.storyboard */,
 				DBCB72CC1E1322DF00F4B6F0 /* Assets.xcassets */,
+				DBCB2E571E1B397C00C3911C /* USDeclaration.ttf */,
 				DBCB72CE1E1322DF00F4B6F0 /* LaunchScreen.storyboard */,
 				DBCB72D11E1322DF00F4B6F0 /* Info.plist */,
 				DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */,
@@ -312,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBCB2E581E1B3E8900C3911C /* USDeclaration.ttf in Resources */,
 				DBCB72F61E1323D800F4B6F0 /* GoogleService-Info.plist in Resources */,
 				DBCB72D01E1322DF00F4B6F0 /* LaunchScreen.storyboard in Resources */,
 				DBCB72CD1E1322DF00F4B6F0 /* Assets.xcassets in Resources */,
