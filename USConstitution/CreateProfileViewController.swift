@@ -84,10 +84,10 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayNameAvailabilityCheck(displayName: String) {
-        FirebaseClient.sharedInstance.getAllDisplayNames(completion: { (displayNames, error) -> () in
-            if let displayNames = displayNames {
-                print(displayNames)
-                if displayNames.contains(displayName) {
+        FirebaseClient.sharedInstance.doesDisplayNameExist(displayName, completion: { (exists, error) -> () in
+            if let exists = exists {
+                print(exists)
+                if exists {
                     self.aiv.isHidden = true
                     self.aiv.stopAnimating()
                     self.displayNameTextField.becomeFirstResponder()

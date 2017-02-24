@@ -289,6 +289,7 @@ class QuestionViewController: UIViewController {
     }
     
     func setUpView() {
+        answerButton4.isHidden = false
         let index = arc4random_uniform(UInt32(quizzes.count))
         var i = 0
         if quizzes.count > 0 {
@@ -298,7 +299,19 @@ class QuestionViewController: UIViewController {
                     currentQuiz = quiz
                     answersArray = []
                     var answers = quiz.answers
-                    var j = quiz.answers.count
+                    print(answers)
+                    for i in 0...3 {
+                        if answers[i] == "" {
+                            answers.remove(at: i)
+                            break
+                        }
+                    }
+                    print(answers)
+                    print("")
+                    print("_________")
+                    print("")
+                    var j = answers.count
+
                     while j > 0 {
                         let rand = arc4random_uniform(UInt32(j))
                         answersArray.append(answers[Int(rand)])
@@ -311,7 +324,13 @@ class QuestionViewController: UIViewController {
                     answerButton1.setTitle(answersArray[0], for: .normal)
                     answerButton2.setTitle(answersArray[1], for: .normal)
                     answerButton3.setTitle(answersArray[2], for: .normal)
-                    answerButton4.setTitle(answersArray[3], for: .normal)
+                    if answersArray.count == 4 {
+                        answerButton4.setTitle(answersArray[3], for: .normal)
+                    } else {
+                        answerButton4.setTitle("", for: .normal)
+                        answerButton4.isHidden = true
+                    }
+
                     usedQuizzes.append(quiz)
                     quizzes.remove(at: i)
                     elapsedTimeBar.frame = CGRect(x: screenRect.width - 10, y: screenRect.height/2 - 20, width: 0, height: 40)
@@ -327,8 +346,7 @@ class QuestionViewController: UIViewController {
             saveAiv.startAnimating()
             saveAiv.isHidden = false
             
-            let result = Result(score: totalScoreLabel.text!, correctAnswers: totalCorrectAnswersLabel.text!, incorrectAnswers: totalIncorrectAnswersLabel.text!, timestamp: getCurrentDateAndTime(), displayName: appDelegate.displayName)
-
+            let result = Result(score: score, correctAnswers: totalCorrectAnswersLabel.text!, incorrectAnswers: totalIncorrectAnswersLabel.text!, timestamp: getCurrentDateAndTime(), displayName: appDelegate.displayName)
             FirebaseClient.sharedInstance.postResult(uid: self.appDelegate.uid, result: result, level: self.appDelegate.level, userLevel: self.appDelegate.userLevel, score: score, maxScore: maxScore, completion: { (message, error) -> () in
                 if let message = message {
                     self.saveAiv.isHidden = true
@@ -529,6 +547,7 @@ class QuestionViewController: UIViewController {
     func scoresButtonPressed(_ sender: AnyObject) {
         appDelegate.level = "None"
         let svc = storyboard?.instantiateViewController(withIdentifier: "ScoresViewController") as! ScoresViewController
+        svc.levelIndex = ["CitizenQuestions", "PatriotQuestions", "FoundingFatherQuestions"].index(of: level)
         self.present(svc, animated: false, completion: nil)
     }
     

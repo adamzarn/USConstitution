@@ -18,6 +18,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     
     var scope: UISegmentedControl!
     var level: UISegmentedControl!
+    var levelIndex: Int!
     var homeButton: UIButton!
     
     var myCitizenScores: [Result]! = []
@@ -47,7 +48,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         level = UISegmentedControl(items: ["Citizen", "Patriot", "Founding Father"])
         level.frame = CGRect(x: 10, y: 65, width: width - 20, height: 25)
         level.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
-        level.selectedSegmentIndex = 0
+        level.selectedSegmentIndex = levelIndex
         
         aiv = UIActivityIndicatorView(frame: CGRect(x:width/2-10,y: 120, width: 20, height: 20))
         aiv.hidesWhenStopped = true
@@ -88,7 +89,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
             cell.detailTextLabel?.text = formattedTimestamp(ts: currentScores[indexPath.row].timestamp)
         } else {
             cell.textLabel?.text = "\(indexPath.row + 1). \(currentScores[indexPath.row].displayName)"
-            cell.detailTextLabel?.text = currentScores[indexPath.row].score
+            cell.detailTextLabel?.text = String(currentScores[indexPath.row].score)
         }
         return cell
     }

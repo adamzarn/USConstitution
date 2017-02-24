@@ -36,13 +36,13 @@ struct User {
 }
 
 struct Result {
-    let score: String
+    let score: Double
     let correctAnswers: String
     let incorrectAnswers: String
     let timestamp: String
     let displayName: String
     
-    init(score: String, correctAnswers: String, incorrectAnswers: String, timestamp: String, displayName: String) {
+    init(score: Double, correctAnswers: String, incorrectAnswers: String, timestamp: String, displayName: String) {
         self.score = score
         self.correctAnswers = correctAnswers
         self.incorrectAnswers = incorrectAnswers

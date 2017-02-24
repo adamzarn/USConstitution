@@ -21,7 +21,7 @@ class FirebaseClient: NSObject {
                 for (_, value) in quizzes as! NSDictionary {
                     let quiz = value as! NSDictionary
                     let question = quiz["Question"] as! String
-                    let correctAnswer = quiz["CorrectAnswer"] as! String
+                    let correctAnswer = quiz["correctAnswer"] as! String
                     let answers = quiz["Answers"] as! NSDictionary
                     var answersArray: [String] = []
                     for (_, value) in answers {
@@ -51,13 +51,15 @@ class FirebaseClient: NSObject {
         
     }
     
-    func getAllDisplayNames(completion: @escaping (_ displayNames: [String]?, _ error: NSString?) -> ()) {
-        self.ref.child("DisplayNames").observeSingleEvent(of: .value, with: { snapshot in
-            if snapshot.exists() {
-                let displayNames = (snapshot.value as! NSDictionary).allValues as! [String]
-                completion(displayNames, nil)
+    func doesDisplayNameExist(_ newDisplayName: String, completion: @escaping (_ exists: Bool?, _ error: NSString?) -> ()) {
+        let displayNameRef = self.ref.child("DisplayNames")
+        displayNameRef.queryOrderedByValue().queryEqual(toValue: "\(newDisplayName)").observe(.value, with: { snapshot in
+            if (snapshot.value is NSNull ) {
+                print("not found")
+                completion(false, nil)
             } else {
-                completion([], nil)
+                print("found")
+                completion(true, nil)
             }
         })
     }
@@ -88,7 +90,7 @@ class FirebaseClient: NSObject {
         let userLevelRef = self.ref.child("Users/\(uid)/level")
         
         var message: String!
-        if score >= 0.9*maxScore {
+        if score >= 0.8*maxScore {
             if userLevel == "New" && level == "citizen" {
                 message = "You are now a Citizen! \n The Patriot Quiz has been unlocked!"
                 userLevelRef.setValue("Citizen")
@@ -106,7 +108,7 @@ class FirebaseClient: NSObject {
             }
         } else {
             if userLevel != "Founding Father" {
-                message = "Better luck next time. \n You need \(0.9*maxScore) points to unlock the next quiz."
+                message = "Better luck next time. \n You need \(0.8*maxScore) points to unlock the next quiz."
             } else {
                 message = "Not your best showing. \n Keep working at it though!"
             }
@@ -116,18 +118,18 @@ class FirebaseClient: NSObject {
     }
     
     func getScores(path: String, completion: @escaping (_ scores: [Result]?, _ error: NSString?) -> ()) {
-        self.ref.child(path).observeSingleEvent(of: .value, with: { snapshot in
+        self.ref.child(path).queryOrdered(byChild: "score").queryLimited(toLast: 4).observe(.value, with: { snapshot in
             if snapshot.exists() {
                 let results = snapshot.value as! NSDictionary
                 var scores: [Result] = []
                 for (_, value) in results {
                     let result = value as! NSDictionary
-                    let score = result["score"] as! String
+                    let score = result.value(forKey: "score")!
                     let correctAnswers = result["correctAnswers"] as! String
                     let incorrectAnswers = result["incorrectAnswers"] as! String
                     let timestamp = result["timestamp"] as! String
                     let displayName = result["displayName"] as! String
-                    let newScore = Result(score: score, correctAnswers: correctAnswers, incorrectAnswers: incorrectAnswers, timestamp: timestamp, displayName: displayName)
+                    let newScore = Result(score: score as! Double, correctAnswers: correctAnswers, incorrectAnswers: incorrectAnswers, timestamp: timestamp, displayName: displayName)
                     scores.append(newScore)
                 }
                 completion(scores, nil)
