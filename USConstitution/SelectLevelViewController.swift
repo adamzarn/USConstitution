@@ -15,6 +15,8 @@ class SelectLevelViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
     
+    var backgroundImage: UIImageView!
+    
     var citizenButton: UIButton!
     var patriotButton: UIButton!
     var foundingFatherButton: UIButton!
@@ -31,6 +33,10 @@ class SelectLevelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
+        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        self.view.addSubview(backgroundImage)
         
         let statusBarHeight = Int(UIApplication.shared.statusBarFrame.height)
         let displayName = appDelegate.displayName!
@@ -54,23 +60,24 @@ class SelectLevelViewController: UIViewController {
         
         logoutButton = UIButton(frame: CGRect(x: pad, y: 40, width: Int(screenRect.width/5), height: 30))
         logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.setTitleColor(.blue, for: .normal)
+        logoutButton.setTitleColor(.black, for: .normal)
         logoutButton.layer.borderWidth = 1
-        logoutButton.layer.borderColor = UIColor.blue.cgColor
+        logoutButton.layer.borderColor = UIColor.black.cgColor
         logoutButton.layer.cornerRadius = 5
+        logoutButton.backgroundColor = UIColor.white
         logoutButton.addTarget(self, action: #selector(self.logoutButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(logoutButton)
         
         welcomeLabel = UILabel(frame: CGRect(x: pad, y: 80, width: buttonWidth, height: (pad + offset + statusBarHeight - 90)/2))
         welcomeLabel.textAlignment = .center
-        welcomeLabel.font = UIFont.systemFont(ofSize: 40)
+        welcomeLabel.font = UIFont(name: "Canterbury", size: 100.0)
         welcomeLabel.text = "Welcome \(displayName)!"
         welcomeLabel.adjustsFontSizeToFitWidth = true
         self.view.addSubview(welcomeLabel)
         
-        statusLabel = UILabel(frame: CGRect(x: pad, y: 80 + (pad + offset + statusBarHeight - 90)/2, width: buttonWidth, height: 20))
+        statusLabel = UILabel(frame: CGRect(x: pad, y: 80 + (pad + offset + statusBarHeight - 90)/2, width: buttonWidth, height: 30))
         statusLabel.textAlignment = .center
-        statusLabel.font = UIFont.systemFont(ofSize: 17)
+        statusLabel.font = UIFont.systemFont(ofSize: 24.0)
         statusLabel.text = "Your Status: \(userLevel)"
         self.view.addSubview(statusLabel)
         

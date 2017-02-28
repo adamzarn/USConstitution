@@ -14,24 +14,30 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let screenRect = UIScreen.main.bounds
     
+    var createProfileLabel: UILabel!
     var displayNameTextField: CustomTextField!
     var emailTextField: CustomTextField!
     var passwordTextField: CustomTextField!
     var verifyPasswordTextField: CustomTextField!
     var aiv: UIActivityIndicatorView!
+    var backgroundImage: UIImageView!
     var submitButton: UIButton!
     var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        displayNameTextField = CustomTextField(frame: CGRect(x: 20, y: 40, width: screenRect.width-40, height: 30))
-        emailTextField = CustomTextField(frame: CGRect(x: 20, y: 80, width: screenRect.width-40, height: 30))
-        passwordTextField = CustomTextField(frame: CGRect(x: 20, y: 120, width: screenRect.width-40, height: 30))
-        verifyPasswordTextField = CustomTextField(frame: CGRect(x: 20, y: 160, width: screenRect.width-40, height: 30))
+        createProfileLabel = UILabel(frame: CGRect(x: 20, y: 40, width: screenRect.width-40, height: 40))
+        displayNameTextField = CustomTextField(frame: CGRect(x: 20, y: 90, width: screenRect.width-40, height: 40))
+        emailTextField = CustomTextField(frame: CGRect(x: 20, y: 140, width: screenRect.width-40, height: 40))
+        passwordTextField = CustomTextField(frame: CGRect(x: 20, y: 190, width: screenRect.width-40, height: 40))
+        verifyPasswordTextField = CustomTextField(frame: CGRect(x: 20, y: 240, width: screenRect.width-40, height: 40))
         
         passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
+        createProfileLabel.text = "Create Profile"
+        createProfileLabel.font = UIFont(name: "Canterbury", size: 30.0)
+        createProfileLabel.textAlignment = .center
         displayNameTextField.placeholder = "Display Name"
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Password"
@@ -41,36 +47,45 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.isSecureTextEntry = true
         verifyPasswordTextField.isSecureTextEntry = true
         
+        backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
+        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        
+        self.view.addSubview(backgroundImage)
+        
         let textFields = [displayNameTextField,emailTextField,passwordTextField,verifyPasswordTextField]
         
         for tf in textFields {
             tf!.autocapitalizationType = .none
             tf!.autocorrectionType = .no
             tf!.layer.borderWidth = 1
-            tf!.layer.borderColor = UIColor.lightGray.cgColor
+            tf!.layer.borderColor = UIColor.black.cgColor
             tf!.layer.cornerRadius = 5
+            tf!.backgroundColor = UIColor.white
             self.view.addSubview(tf!)
             tf!.delegate = self
         }
         
-        aiv = UIActivityIndicatorView(frame: CGRect(x: screenRect.width/2-50, y: 200, width: 100, height: 100))
-        aiv.color = .lightGray
+        aiv = UIActivityIndicatorView(frame: CGRect(x: screenRect.width/2-20, y: 290, width: 40, height: 40))
+        aiv.color = .black
         aiv.isHidden = true
         
-        submitButton = UIButton(frame: CGRect(x: 20, y: screenRect.height - 90, width: screenRect.width - 40, height: 30))
+        submitButton = UIButton(frame: CGRect(x: 20, y: screenRect.height - 110, width: screenRect.width - 40, height: 40))
         submitButton.setTitle("Submit",for:.normal)
-        submitButton.setTitleColor(.blue,for:.normal)
+        submitButton.setTitleColor(.black,for:.normal)
         submitButton.layer.borderWidth = 1
         submitButton.layer.cornerRadius = 5
+        submitButton.backgroundColor = UIColor.white
         submitButton.addTarget(self, action: #selector(CreateProfileViewController.submitButtonPressed(_:)), for: .touchUpInside)
         
-        cancelButton = UIButton(frame: CGRect(x: 20, y: screenRect.height - 50, width: screenRect.width - 40, height: 30))
+        cancelButton = UIButton(frame: CGRect(x: 20, y: screenRect.height - 60, width: screenRect.width - 40, height: 40))
         cancelButton.setTitle("Cancel",for:.normal)
-        cancelButton.setTitleColor(.blue,for:.normal)
+        cancelButton.setTitleColor(.black,for:.normal)
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.cornerRadius = 5
+        cancelButton.backgroundColor = UIColor.white
         cancelButton.addTarget(self, action: #selector(CreateProfileViewController.cancelButtonPressed(_:)), for: .touchUpInside)
-        
+
+        self.view.addSubview(createProfileLabel)
         self.view.addSubview(aiv)
         self.view.addSubview(submitButton)
         self.view.addSubview(cancelButton)

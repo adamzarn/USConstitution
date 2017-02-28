@@ -10,6 +10,7 @@
 		35185FCCF52FF51F4DCA0B2D /* Pods_USConstitutionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5064867BDA4275916EB8F5FA /* Pods_USConstitutionUITests.framework */; };
 		36B85E2DE1FE4FB7046399E9 /* Pods_USConstitutionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D3315838811826E403D9C5 /* Pods_USConstitutionTests.framework */; };
 		4328D3A05E7BDBF686FC21FB /* Pods_USConstitution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCEBA4530F0D9B3D7DDDE87 /* Pods_USConstitution.framework */; };
+		DB37D92C1E6612CB00CFC2AC /* Canterbury.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB37D92B1E66120800CFC2AC /* Canterbury.ttf */; };
 		DB63F89D1E1A0F3A00FB8699 /* ScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */; };
 		DBA304531E1867300023D678 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA304521E1867300023D678 /* LoginViewController.swift */; };
 		DBA304551E18748E0023D678 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA304541E18748E0023D678 /* CreateProfileViewController.swift */; };
@@ -55,6 +56,7 @@
 		658FCCB0B300992799E865A0 /* Pods-USConstitution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitution.release.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution.release.xcconfig"; sourceTree = "<group>"; };
 		B126FEDA5D89BF50147BC5D7 /* Pods-USConstitutionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionUITests/Pods-USConstitutionUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD858BAE88E645CE131C267B /* Pods-USConstitutionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionUITests/Pods-USConstitutionUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DB37D92B1E66120800CFC2AC /* Canterbury.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Canterbury.ttf; sourceTree = "<group>"; };
 		DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresViewController.swift; sourceTree = "<group>"; };
 		DBA304521E1867300023D678 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DBA304541E18748E0023D678 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				DBCB72C61E1322DF00F4B6F0 /* Main.storyboard */,
 				DBCB72CC1E1322DF00F4B6F0 /* Assets.xcassets */,
 				DBCB2E571E1B397C00C3911C /* USDeclaration.ttf */,
+				DB37D92B1E66120800CFC2AC /* Canterbury.ttf */,
 				DBCB72CE1E1322DF00F4B6F0 /* LaunchScreen.storyboard */,
 				DBCB72D11E1322DF00F4B6F0 /* Info.plist */,
 				DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */,
@@ -315,6 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB37D92C1E6612CB00CFC2AC /* Canterbury.ttf in Resources */,
 				DBCB2E581E1B3E8900C3911C /* USDeclaration.ttf in Resources */,
 				DBCB72F61E1323D800F4B6F0 /* GoogleService-Info.plist in Resources */,
 				DBCB72D01E1322DF00F4B6F0 /* LaunchScreen.storyboard in Resources */,
@@ -628,6 +632,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = USConstitution/USConstitution.entitlements;
 				DEVELOPMENT_TEAM = QA67695N79;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = USConstitution/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitution;
@@ -643,6 +648,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = USConstitution/USConstitution.entitlements;
 				DEVELOPMENT_TEAM = QA67695N79;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = USConstitution/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitution;

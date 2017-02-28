@@ -21,6 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var passwordTextField: CustomTextField!
     var loginButton: UIButton!
     var createProfileButton: UIButton!
+    var backgroundImage: UIImageView!
     var aiv: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -29,24 +30,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         titleLabel = UILabel(frame: CGRect(x:20, y: screenRect.height/2 - 200, width: screenRect.width - 40, height: 100))
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont(name: "US Declaration", size: 100)
+        titleLabel.font = UIFont(name: "Canterbury", size: 100)
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.text = "Constitution"
         
-        subtitleLabel = UILabel(frame: CGRect(x:20, y: screenRect.height/2 - 100, width: screenRect.width - 40, height: 20))
+        subtitleLabel = UILabel(frame: CGRect(x: 20, y: screenRect.height/2 - 120, width: screenRect.width - 40, height: 20))
         subtitleLabel.textAlignment = .center
         subtitleLabel.text = "Quizzer"
         
-        emailTextField = CustomTextField(frame: CGRect(x: 20, y: screenRect.height/2 - 40, width: screenRect.width - 40, height: 30))
-        emailTextField.layer.borderColor = UIColor.lightGray.cgColor
+        emailTextField = CustomTextField(frame: CGRect(x: 20, y: screenRect.height/2 - 40, width: screenRect.width - 40, height: 40))
+        emailTextField.layer.borderColor = UIColor.black.cgColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.cornerRadius = 5
-        passwordTextField = CustomTextField(frame: CGRect(x: 20, y: screenRect.height/2, width: screenRect.width-40, height: 30))
-        passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
+        emailTextField.backgroundColor = UIColor.white
+        passwordTextField = CustomTextField(frame: CGRect(x: 20, y: screenRect.height/2 + 10, width: screenRect.width-40, height: 40))
+        passwordTextField.layer.borderColor = UIColor.black.cgColor
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 5
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Password"
+        passwordTextField.backgroundColor = UIColor.white
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocorrectionType = .no
@@ -63,24 +66,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        loginButton = UIButton(frame: CGRect(x: 20, y: screenRect.height/2 + 40, width: screenRect.width-40, height: 30))
+        loginButton = UIButton(frame: CGRect(x: 20, y: screenRect.height/2 + 60, width: screenRect.width-40, height: 40))
         loginButton.setTitle("Login",for:.normal)
-        loginButton.setTitleColor(.blue, for: .normal)
+        loginButton.setTitleColor(.black, for: .normal)
         loginButton.layer.borderWidth = 1
         loginButton.layer.cornerRadius = 5
+        loginButton.backgroundColor = UIColor.white
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), for: .touchUpInside)
         
-        aiv = UIActivityIndicatorView(frame: CGRect(x: screenRect.width/2-50, y: screenRect.height/2 + 60, width: 100, height: 100))
-        aiv.color = .lightGray
+        aiv = UIActivityIndicatorView(frame: CGRect(x: screenRect.width/2-20, y: screenRect.height/2 + 110, width: 40, height: 40))
+        aiv.color = .black
         aiv.isHidden = true
         
-        createProfileButton = UIButton(frame: CGRect(x: 20, y: screenRect.height - 50, width: screenRect.width-40, height: 30))
+        createProfileButton = UIButton(frame: CGRect(x: 20, y: screenRect.height - 60, width: screenRect.width-40, height: 40))
         createProfileButton.setTitle("Create Profile",for:.normal)
-        createProfileButton.setTitleColor(.blue, for: .normal)
+        createProfileButton.setTitleColor(.black, for: .normal)
         createProfileButton.layer.borderWidth = 1
         createProfileButton.layer.cornerRadius = 5
+        createProfileButton.backgroundColor = UIColor.white
         createProfileButton.addTarget(self, action: #selector(LoginViewController.createProfileButtonPressed(_:)), for: .touchUpInside)
         
+        backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
+        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        
+        self.view.addSubview(backgroundImage)
         self.view.addSubview(titleLabel)
         self.view.addSubview(subtitleLabel)
         self.view.addSubview(emailTextField)
@@ -88,7 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(loginButton)
         self.view.addSubview(aiv)
         self.view.addSubview(createProfileButton)
-
+        
     }
     
     func loginButtonPressed(_ sender: AnyObject) {

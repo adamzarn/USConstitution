@@ -12,6 +12,7 @@ class QuestionViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    var backgroundImage: UIImageView!
     var questionLabel: UILabel!
     let green = UIColor(red: 61.0/255.0, green: 175.0/255.0, blue: 109.0/255.0, alpha: 1.0)
     
@@ -37,6 +38,7 @@ class QuestionViewController: UIViewController {
     var questionsRemainingLabel: UILabel!
     var totalQuestionsRemainingLabel: UILabel!
     var resultLabel: UILabel!
+    var blankLabel: UILabel!
     
     var labels: [UILabel]!
     
@@ -66,6 +68,10 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
+        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        self.view.addSubview(backgroundImage)
         
         //Constants
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
@@ -105,6 +111,7 @@ class QuestionViewController: UIViewController {
             button.layer.borderColor = UIColor.black.cgColor
             button.layer.borderWidth = 1
             button.layer.cornerRadius = 5
+            button.backgroundColor = .white
             self.view.addSubview(button)
             i += 1
         }
@@ -128,7 +135,7 @@ class QuestionViewController: UIViewController {
         self.view.addSubview(timeBar)
         
         elapsedTimeBar = UIButton(frame: CGRect(x: screenRect.width - 10, y: screenRect.height/2 - 20, width: 0, height: 40))
-        elapsedTimeBar.backgroundColor = .white
+        elapsedTimeBar.backgroundColor = .clear
         self.view.addSubview(elapsedTimeBar)
         self.view.bringSubview(toFront: elapsedTimeBar)
         
@@ -147,39 +154,52 @@ class QuestionViewController: UIViewController {
         
         //Score and Total Score, correct, incorrect, and questions remaining
         score = 0.0
-        scoreLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 20 + space, width: screenRect.width - 20, height: 20))
-        scoreLabel.text = "Score"
+        scoreLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 20 + space, width: screenRect.width - 20, height: 40))
+        let scoreText = NSMutableAttributedString(string: "Score")
+        scoreText.addAttribute(NSUnderlineStyleAttributeName , value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(0, 5))
+        scoreLabel.attributedText = scoreText
+        scoreLabel.font = UIFont.systemFont(ofSize: 28)
         
-        totalScoreLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 40 + space, width: screenRect.width - 20, height: 20))
+        totalScoreLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 50 + space, width: screenRect.width - 20, height: 40))
         totalScoreLabel.text = "0.0"
+        totalScoreLabel.font = UIFont.systemFont(ofSize: 28)
         
         let width = (screenRect.width - 40)/3
         
         correct = 0
-        correctAnswersLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 70 + space, width: width, height: 20))
-        correctAnswersLabel.text = "Correct"
+        correctAnswersLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 110 + space, width: width, height: 20))
+        let correctText = NSMutableAttributedString(string: "Correct")
+        correctText.addAttribute(NSUnderlineStyleAttributeName , value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(0, 7))
+        correctAnswersLabel.attributedText = correctText
         
-        totalCorrectAnswersLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 90 + space, width: width, height: 20))
+        totalCorrectAnswersLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 130 + space, width: width, height: 20))
         totalCorrectAnswersLabel.text = "0"
         
         incorrect = 0
-        incorrectAnswersLabel = UILabel(frame: CGRect(x: 20 + width, y: screenRect.height/2 + 70 + space, width: width, height: 20))
-        incorrectAnswersLabel.text = "Incorrect"
+        incorrectAnswersLabel = UILabel(frame: CGRect(x: 20 + width, y: screenRect.height/2 + 110 + space, width: width, height: 20))
+        let incorrectText = NSMutableAttributedString(string: "Incorrect")
+        incorrectText.addAttribute(NSUnderlineStyleAttributeName , value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(0, 9))
+        incorrectAnswersLabel.attributedText = incorrectText
         
-        totalIncorrectAnswersLabel = UILabel(frame: CGRect(x: 20 + width, y: screenRect.height/2 + 90 + space, width: width, height: 20))
+        totalIncorrectAnswersLabel = UILabel(frame: CGRect(x: 20 + width, y: screenRect.height/2 + 130 + space, width: width, height: 20))
         totalIncorrectAnswersLabel.text = "0"
         
-        questionsRemainingLabel = UILabel(frame: CGRect(x: 30 + 2*width, y: screenRect.height/2 + 70 + space, width: width, height: 20))
-        questionsRemainingLabel.text = "Left"
+        questionsRemainingLabel = UILabel(frame: CGRect(x: 30 + 2*width, y: screenRect.height/2 + 110 + space, width: width, height: 20))
+        let leftText = NSMutableAttributedString(string: "Left")
+        leftText.addAttribute(NSUnderlineStyleAttributeName , value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(0, 4))
+        questionsRemainingLabel.attributedText = leftText
         
-        totalQuestionsRemainingLabel = UILabel(frame: CGRect(x: 30 + 2*width, y: screenRect.height/2 + 90 + space, width: width, height: 20))
+        totalQuestionsRemainingLabel = UILabel(frame: CGRect(x: 30 + 2*width, y: screenRect.height/2 + 130 + space, width: width, height: 20))
         totalQuestionsRemainingLabel.text = "20"
         
-        labels = [scoreLabel,totalScoreLabel,correctAnswersLabel,totalCorrectAnswersLabel,incorrectAnswersLabel,totalIncorrectAnswersLabel,questionsRemainingLabel,totalQuestionsRemainingLabel]
+        blankLabel = UILabel(frame: CGRect(x: 10, y: screenRect.height/2 + 110 + space, width: screenRect.width-20, height: 40))
+        blankLabel.layer.borderColor = UIColor.black.cgColor
+        blankLabel.layer.borderWidth = 1
+        blankLabel.layer.cornerRadius = 5
+        
+        labels = [scoreLabel,totalScoreLabel,correctAnswersLabel,totalCorrectAnswersLabel,incorrectAnswersLabel,totalIncorrectAnswersLabel,questionsRemainingLabel,totalQuestionsRemainingLabel,blankLabel]
         
         for label in labels {
-            label.layer.borderWidth = 1
-            label.layer.cornerRadius = 5
             label.isHidden = true
             label.textAlignment = .center
             label.adjustsFontSizeToFitWidth = true
@@ -299,24 +319,18 @@ class QuestionViewController: UIViewController {
                     currentQuiz = quiz
                     answersArray = []
                     var answers = quiz.answers
-                    print(answers)
                     for i in 0...3 {
                         if answers[i] == "" {
                             answers.remove(at: i)
                             break
                         }
                     }
-                    print(answers)
-                    print("")
-                    print("_________")
-                    print("")
                     var j = answers.count
 
                     while j > 0 {
                         let rand = arc4random_uniform(UInt32(j))
                         answersArray.append(answers[Int(rand)])
                         answers.remove(at: Int(rand))
-                        print("")
                         j -= 1
                     }
                     
@@ -342,11 +356,16 @@ class QuestionViewController: UIViewController {
             }
             
         } else {
+            
+            for button in buttons {
+                button.isEnabled = false
+            }
 
             saveAiv.startAnimating()
             saveAiv.isHidden = false
             
             let result = Result(score: score, correctAnswers: totalCorrectAnswersLabel.text!, incorrectAnswers: totalIncorrectAnswersLabel.text!, timestamp: getCurrentDateAndTime(), displayName: appDelegate.displayName)
+            
             FirebaseClient.sharedInstance.postResult(uid: self.appDelegate.uid, result: result, level: self.appDelegate.level, userLevel: self.appDelegate.userLevel, score: score, maxScore: maxScore, completion: { (message, error) -> () in
                 if let message = message {
                     self.saveAiv.isHidden = true
@@ -367,15 +386,24 @@ class QuestionViewController: UIViewController {
             button.isHidden = true
             button.isEnabled = false
         }
+        
+        blankLabel.isHidden = true
+        
         timeBar.isHidden = true
         elapsedTimeBar.isHidden = true
         pointsLabel.isHidden = true
+        
+        startQuizButton.isHidden = true
+        startQuizButton.isEnabled = false
+        endQuizButton.isHidden = true
+        endQuizButton.isEnabled = false
+        
         toggleButton(button: homeButton)
         toggleButton(button: scoresButton)
         
-        scoreLabel.frame = CGRect(x: 10, y: screenRect.height/2 - 115, width: screenRect.width - 20, height: 100)
+        scoreLabel.frame = CGRect(x: 10, y: screenRect.height/2 - 115, width: screenRect.width - 20, height: 50)
         scoreLabel.font = scoreLabel.font.withSize(50.0)
-        totalScoreLabel.frame = CGRect(x: 10, y: screenRect.height/2 - 5, width: screenRect.width - 20, height: 100)
+        totalScoreLabel.frame = CGRect(x: 10, y: screenRect.height/2 - 55, width: screenRect.width - 20, height: 50)
         totalScoreLabel.font = totalScoreLabel.font.withSize(50.0)
         
         resultLabel.isHidden = false
@@ -384,12 +412,13 @@ class QuestionViewController: UIViewController {
         
         let width = (screenRect.width - 30)/2
         
-        correctAnswersLabel.frame = CGRect(x: 10, y: screenRect.height/2 + 105, width: width, height: 50)
-        totalCorrectAnswersLabel.frame = CGRect(x: 10, y: screenRect.height/2 + 160, width: width, height: 50)
-        incorrectAnswersLabel.frame = CGRect(x: 20 + width, y: screenRect.height/2 + 105, width: width, height: 50)
-        totalIncorrectAnswersLabel.frame = CGRect(x: 20 + width, y: screenRect.height/2 + 160, width: width, height: 50)
+        correctAnswersLabel.frame = CGRect(x: 10, y: screenRect.height/2 + 105, width: width, height: 20)
+        totalCorrectAnswersLabel.frame = CGRect(x: 10, y: screenRect.height/2 + 130, width: width, height: 20)
+        incorrectAnswersLabel.frame = CGRect(x: 20 + width, y: screenRect.height/2 + 105, width: width, height: 20)
+        totalIncorrectAnswersLabel.frame = CGRect(x: 20 + width, y: screenRect.height/2 + 130, width: width, height: 20)
         questionsRemainingLabel.isHidden = true
         totalQuestionsRemainingLabel.isHidden = true
+        
     }
     
     func getCurrentDateAndTime() -> String {
@@ -404,6 +433,7 @@ class QuestionViewController: UIViewController {
         let growthLength = (screenRect.width - 20)/200
         let newWidth = elapsedTimeBar.frame.size.width + growthLength
         if newWidth <= screenRect.width - 20 {
+            timeBar.frame = CGRect(x: 10, y: screenRect.height/2-20, width: screenRect.width-20-newWidth, height: 40)
             elapsedTimeBar.frame = CGRect(x: screenRect.width - 10 - newWidth, y: screenRect.height/2-20, width: newWidth, height: 40)
             pointsLabel.frame = CGRect(x: screenRect.width - 100 - newWidth, y: screenRect.height/2-20, width: 80, height: 40)
             points = points - 0.1
@@ -422,8 +452,6 @@ class QuestionViewController: UIViewController {
     
     func nextButtonPressed(_ sender: Any) {
         points = 20
-        
-        setUpView()
         
         if startQuizButton.titleLabel?.text == "Start Quiz" {
             startQuizButton.frame = CGRect(x:screenRect.width/2+5,y:screenRect.height-50,width:screenRect.width/2-15, height: 40)
@@ -452,6 +480,8 @@ class QuestionViewController: UIViewController {
                 button.isEnabled = true
             }
         }
+        
+        setUpView()
         
     }
     
@@ -514,6 +544,9 @@ class QuestionViewController: UIViewController {
         if quizzes.count == 0 {
             startQuizButton.setTitle("Save Quiz", for: .normal)
             endQuizButton.setTitle("Discard Quiz", for: .normal)
+            for button in buttons {
+                button.isEnabled = false
+            }
         }
         questionTimer.invalidate()
     }
@@ -547,7 +580,7 @@ class QuestionViewController: UIViewController {
     func scoresButtonPressed(_ sender: AnyObject) {
         appDelegate.level = "None"
         let svc = storyboard?.instantiateViewController(withIdentifier: "ScoresViewController") as! ScoresViewController
-        svc.levelIndex = ["CitizenQuestions", "PatriotQuestions", "FoundingFatherQuestions"].index(of: level)
+        svc.levelIndex = ["CitizenQuestions", "PatriotQuestions", "FoundingFatherQuestions"].index(of: level)!
         self.present(svc, animated: false, completion: nil)
     }
     

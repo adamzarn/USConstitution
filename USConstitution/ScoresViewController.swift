@@ -15,11 +15,13 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let screenRect = UIScreen.main.bounds
+    var backgroundImage: UIImageView!
     
     var scope: UISegmentedControl!
     var level: UISegmentedControl!
-    var levelIndex: Int!
+    var levelIndex = 0
     var homeButton: UIButton!
+    var label: UILabel!
     
     var myCitizenScores: [Result]! = []
     var myPatriotScores: [Result]! = []
@@ -27,6 +29,9 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     var allCitizenScores: [Result]! = []
     var allPatriotScores: [Result]! = []
     var allFoundingFatherScores: [Result]! = []
+    
+    var scoreTypes = ["My", "All"]
+    var quizTypes = ["Citizen", "Patriot", "Founding Father"]
     
     var aiv: UIActivityIndicatorView!
     
@@ -37,22 +42,28 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         
+        backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
+        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        self.view.addSubview(backgroundImage)
+        
         let width = screenRect.width
         let height = screenRect.height
         
         scope = UISegmentedControl(items: ["My Scores", "All Scores"])
+        scope.backgroundColor = .white
         scope.frame = CGRect(x: 10, y: 30, width: width - 20, height: 25)
         scope.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
         scope.selectedSegmentIndex = 0
         
-        level = UISegmentedControl(items: ["Citizen", "Patriot", "Founding Father"])
+        level = UISegmentedControl(items: quizTypes)
+        level.backgroundColor = .white
         level.frame = CGRect(x: 10, y: 65, width: width - 20, height: 25)
         level.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
         level.selectedSegmentIndex = levelIndex
         
-        aiv = UIActivityIndicatorView(frame: CGRect(x:width/2-10,y: 120, width: 20, height: 20))
+        aiv = UIActivityIndicatorView(frame: CGRect(x:width/2-10,y: 150, width: 20, height: 20))
         aiv.hidesWhenStopped = true
-        aiv.color = .lightGray
+        aiv.color = .black
         
         resultArrays = [[myCitizenScores,myPatriotScores,myFoundingFatherScores],[allCitizenScores,allPatriotScores,allFoundingFatherScores]]
         alreadyLoaded = [[false, false, false], [false, false, false]]
@@ -70,9 +81,18 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         self.view.addSubview(level)
         self.view.addSubview(aiv)
         
-        myTableView.frame = CGRect(x: 0, y: 100, width: width, height: height - 100 - homeButton.frame.height - 20)
+        label = UILabel(frame: CGRect(x: 20, y: 95, width: screenRect.width-40, height: 40))
+        label.text = "My \(quizTypes[levelIndex]) Scores"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Canterbury", size: 30.0)
+        self.view.addSubview(label)
+        
+        myTableView.frame = CGRect(x: 0, y: 135, width: width, height: height - 135 - homeButton.frame.height - 20)
         
         myTableView.isHidden = true
+        myTableView.backgroundColor = .clear
+        self.view.addSubview(myTableView)
+        view.bringSubview(toFront: myTableView)
         aiv.startAnimating()
         getDataForSelectedIndices(scope: scope.selectedSegmentIndex, level: level.selectedSegmentIndex)
         
@@ -91,12 +111,14 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
             cell.textLabel?.text = "\(indexPath.row + 1). \(currentScores[indexPath.row].displayName)"
             cell.detailTextLabel?.text = String(currentScores[indexPath.row].score)
         }
+        cell.backgroundColor = .clear
         return cell
     }
     
     func segmentedControlValueChanged(_ sender: AnyObject) {
         myTableView.isHidden = true
         aiv.startAnimating()
+        label.text = "\(scoreTypes[scope.selectedSegmentIndex]) \(quizTypes[level.selectedSegmentIndex]) Scores"
         getDataForSelectedIndices(scope: scope.selectedSegmentIndex, level: level.selectedSegmentIndex)
     }
     

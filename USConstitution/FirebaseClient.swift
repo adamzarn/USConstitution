@@ -81,11 +81,6 @@ class FirebaseClient: NSObject {
     }
     
     func postResult(uid: String, result: Result, level: String, userLevel: String, score: Double, maxScore: Double, completion: @escaping (_ message: String?, _ error: NSString?) -> ()) {
-        let scoreRef = self.ref.child("Users/\(uid)/\(level)Results").childByAutoId()
-        scoreRef.setValue(result.toAnyObject())
-        
-        let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
-        topScoreRef.setValue(result.toAnyObject())
         
         let userLevelRef = self.ref.child("Users/\(uid)/level")
         
@@ -94,31 +89,73 @@ class FirebaseClient: NSObject {
             if userLevel == "New" && level == "citizen" {
                 message = "You are now a Citizen! \n The Patriot Quiz has been unlocked!"
                 userLevelRef.setValue("Citizen")
-                appDelegate.userLevel = "Citizen"
+                self.appDelegate.userLevel = "Citizen"
             } else if userLevel == "Citizen" && level == "patriot" {
                 message = "You are now a Patriot! \n The Founding Father Quiz has been unlocked!"
                 userLevelRef.setValue("Patriot")
-                appDelegate.userLevel = "Patriot"
+                self.appDelegate.userLevel = "Patriot"
             } else if userLevel == "Patriot" && level == "foundingFather" {
                 message = "You are now a Founding Father! \n Congratulations!"
                 userLevelRef.setValue("Founding Father")
-                appDelegate.userLevel = "Founding Father"
+                self.appDelegate.userLevel = "Founding Father"
             } else {
                 message = "Great job!"
             }
         } else {
-            if userLevel != "Founding Father" {
+            if userLevel == "New" || userLevel == "Citizen" {
                 message = "Better luck next time. \n You need \(0.8*maxScore) points to unlock the next quiz."
             } else {
                 message = "Not your best showing. \n Keep working at it though!"
             }
         }
         
-        completion(message, nil)
+        let scoreRef = self.ref.child("Users/\(uid)/\(level)Results").childByAutoId()
+        scoreRef.setValue(result.toAnyObject())
+        
+        let topScoresAllowed = 5
+        self.ref.child("TopScores/\(level)").queryOrdered(byChild: "score").queryLimited(toLast: UInt(topScoresAllowed)).observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                var min = 10000.0
+                var potentialKeyToRemove = ""
+                let data = snapshot.value as! NSDictionary
+                
+                for (key, value) in data {
+                    let value = value as! NSDictionary
+                    let score = value["score"] as! Double
+                    if score < min {
+                        min = score
+                        potentialKeyToRemove = key as! String
+                    }
+                }
+                
+                if score > min && data.count == topScoresAllowed {
+                    let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
+                    topScoreRef.setValue(result.toAnyObject())
+                    let refToDelete = self.ref.child("TopScores/\(level)/\(potentialKeyToRemove)")
+                    print(refToDelete)
+                    refToDelete.setValue(nil)
+                }
+                if data.count < topScoresAllowed {
+                    let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
+                    print(topScoreRef)
+                    topScoreRef.setValue(result.toAnyObject())
+                }
+                
+                completion(message, nil)
+                
+            } else {
+                
+                let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
+                topScoreRef.setValue(result.toAnyObject())
+                completion(message, nil)
+                
+            }
+            
+        })
     }
     
     func getScores(path: String, completion: @escaping (_ scores: [Result]?, _ error: NSString?) -> ()) {
-        self.ref.child(path).queryOrdered(byChild: "score").queryLimited(toLast: 4).observe(.value, with: { snapshot in
+        self.ref.child(path).queryOrdered(byChild: "score").queryLimited(toLast: 5).observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
                 let results = snapshot.value as! NSDictionary
                 var scores: [Result] = []
