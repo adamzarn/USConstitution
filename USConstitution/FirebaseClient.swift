@@ -53,7 +53,7 @@ class FirebaseClient: NSObject {
     
     func doesDisplayNameExist(_ newDisplayName: String, completion: @escaping (_ exists: Bool?, _ error: NSString?) -> ()) {
         let displayNameRef = self.ref.child("DisplayNames")
-        displayNameRef.queryOrderedByValue().queryEqual(toValue: "\(newDisplayName)").observe(.value, with: { snapshot in
+        displayNameRef.queryOrderedByValue().queryEqual(toValue: "\(newDisplayName)").observeSingleEvent(of: .value, with: { snapshot in
             if (snapshot.value is NSNull ) {
                 print("not found")
                 completion(false, nil)
@@ -109,53 +109,53 @@ class FirebaseClient: NSObject {
             }
         }
         
-        let scoreRef = self.ref.child("Users/\(uid)/\(level)Results").childByAutoId()
-        scoreRef.setValue(result.toAnyObject())
-        
-        let topScoresAllowed = 5
-        self.ref.child("TopScores/\(level)").queryOrdered(byChild: "score").queryLimited(toLast: UInt(topScoresAllowed)).observeSingleEvent(of: .value, with: { snapshot in
+        self.ref.child("Users/\(uid)/\(level)Results").observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
-                var min = 10000.0
-                var potentialKeyToRemove = ""
-                let data = snapshot.value as! NSDictionary
-                
-                for (key, value) in data {
-                    let value = value as! NSDictionary
-                    let score = value["score"] as! Double
-                    if score < min {
-                        min = score
-                        potentialKeyToRemove = key as! String
-                    }
-                }
-                
-                if score > min && data.count == topScoresAllowed {
-                    let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
-                    topScoreRef.setValue(result.toAnyObject())
-                    let refToDelete = self.ref.child("TopScores/\(level)/\(potentialKeyToRemove)")
-                    print(refToDelete)
-                    refToDelete.setValue(nil)
-                }
-                if data.count < topScoresAllowed {
-                    let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
-                    print(topScoreRef)
-                    topScoreRef.setValue(result.toAnyObject())
-                }
-                
-                completion(message, nil)
-                
+                self.updateDatabase(score: score, result: result, scoresAllowed: 100, data: snapshot.value as! NSDictionary, path: "Users/\(uid)/\(level)Results")
             } else {
-                
+                let userScoreRef = self.ref.child("Users/\(uid)/\(level)Results").childByAutoId()
+                userScoreRef.setValue(result.toAnyObject())
+            }
+        })
+        
+        self.ref.child("TopScores/\(level)").observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                self.updateDatabase(score: score, result: result, scoresAllowed: 100, data: snapshot.value as! NSDictionary, path: "TopScores/\(level)")
+                completion(message, nil)
+            } else {
                 let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
                 topScoreRef.setValue(result.toAnyObject())
                 completion(message, nil)
-                
             }
-            
         })
+        
+    }
+    
+    func updateDatabase(score: Double, result: Result, scoresAllowed: Int, data: NSDictionary, path: String) {
+        var min = 10000.0
+        var potentialKeyToRemove = ""
+        for (key, value) in data {
+            let value = value as! NSDictionary
+            let score = value["score"] as! Double
+            if score < min {
+                min = score
+                potentialKeyToRemove = key as! String
+            }
+        }
+        if score > min && data.count == scoresAllowed {
+            let scoreRef = self.ref.child(path).childByAutoId()
+            scoreRef.setValue(result.toAnyObject())
+            let refToDelete = self.ref.child("\(path)/\(potentialKeyToRemove)")
+            refToDelete.setValue(nil)
+        }
+        if data.count < scoresAllowed {
+            let scoreRef = self.ref.child(path).childByAutoId()
+            scoreRef.setValue(result.toAnyObject())
+        }
     }
     
     func getScores(path: String, completion: @escaping (_ scores: [Result]?, _ error: NSString?) -> ()) {
-        self.ref.child(path).queryOrdered(byChild: "score").queryLimited(toLast: 5).observeSingleEvent(of: .value, with: { snapshot in
+        self.ref.child(path).queryOrdered(byChild: "score").observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
                 let results = snapshot.value as! NSDictionary
                 var scores: [Result] = []

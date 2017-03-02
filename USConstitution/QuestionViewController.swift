@@ -14,7 +14,7 @@ class QuestionViewController: UIViewController {
     
     var backgroundImage: UIImageView!
     var questionLabel: UILabel!
-    let green = UIColor(red: 61.0/255.0, green: 175.0/255.0, blue: 109.0/255.0, alpha: 1.0)
+    let green = UIColor(red: 61.0/255.0, green: 175.0/255.0, blue: 109.0/255.0, alpha: 0.7)
     
     var answerButton1: UIButton!
     var answerButton2: UIButton!
@@ -26,7 +26,6 @@ class QuestionViewController: UIViewController {
     var loadingLabel: UILabel!
     
     var timeBar: UIButton!
-    var elapsedTimeBar: UIButton!
     var pointsLabel: UILabel!
     
     var scoreLabel: UILabel!
@@ -70,7 +69,7 @@ class QuestionViewController: UIViewController {
         super.viewDidLoad()
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
-        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        backgroundImage.image = UIImage(named: "ConstitutionBackground2")
         self.view.addSubview(backgroundImage)
         
         //Constants
@@ -111,7 +110,7 @@ class QuestionViewController: UIViewController {
             button.layer.borderColor = UIColor.black.cgColor
             button.layer.borderWidth = 1
             button.layer.cornerRadius = 5
-            button.backgroundColor = .white
+            button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
             self.view.addSubview(button)
             i += 1
         }
@@ -129,15 +128,10 @@ class QuestionViewController: UIViewController {
         //Timer and Points
         timeBar = UIButton(frame: CGRect(x: 10, y: screenRect.height/2 - 20, width: screenRect.width-20, height: 40))
         timeBar.layer.cornerRadius = 20
-        timeBar.backgroundColor = .blue
+        timeBar.backgroundColor = UIColor.blue.withAlphaComponent(0.7)
         timeBar.isHidden = true
         timeBar.isEnabled = false
         self.view.addSubview(timeBar)
-        
-        elapsedTimeBar = UIButton(frame: CGRect(x: screenRect.width - 10, y: screenRect.height/2 - 20, width: 0, height: 40))
-        elapsedTimeBar.backgroundColor = .clear
-        self.view.addSubview(elapsedTimeBar)
-        self.view.bringSubview(toFront: elapsedTimeBar)
         
         pointsLabel = UILabel(frame: CGRect(x: screenRect.width - 100, y: screenRect.height/2 - 20, width: 80, height: 40))
         pointsLabel.textColor = .white
@@ -210,7 +204,7 @@ class QuestionViewController: UIViewController {
         startQuizButton = UIButton(frame: CGRect(x:30,y:screenRect.height/2-50,width:screenRect.width-60, height: 100))
         startQuizButton.setTitle("Start Quiz", for: .normal)
         startQuizButton.titleLabel?.font = startQuizButton.titleLabel?.font.withSize(40.0)
-        startQuizButton.backgroundColor = .blue
+        startQuizButton.backgroundColor = UIColor.blue.withAlphaComponent(0.7)
         startQuizButton.titleLabel?.textAlignment = .center
         startQuizButton.layer.cornerRadius = 50
         startQuizButton.addTarget(self, action: #selector(QuestionViewController.nextButtonPressed(_:)), for: .touchUpInside)
@@ -219,7 +213,7 @@ class QuestionViewController: UIViewController {
         endQuizButton = UIButton(frame: CGRect(x:10,y:screenRect.height-50,width:screenRect.width-20, height: 40))
         endQuizButton.setTitle("Cancel", for: .normal)
         endQuizButton.titleLabel?.font = endQuizButton.titleLabel?.font.withSize(17.0)
-        endQuizButton.backgroundColor = .red
+        endQuizButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
         endQuizButton.titleLabel?.textAlignment = .center
         endQuizButton.layer.cornerRadius = 5
         endQuizButton.addTarget(self, action: #selector(QuestionViewController.endQuizButtonPressed(_:)), for: .touchUpInside)
@@ -233,7 +227,7 @@ class QuestionViewController: UIViewController {
         
         //Home and Scores Buttons
         homeButton = UIButton(frame: CGRect(x:10,y:screenRect.height-50,width:screenRect.width/2-15, height: 40))
-        homeButton.backgroundColor = .red
+        homeButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
         homeButton.setTitle("Home", for: .normal)
         homeButton.titleLabel?.textAlignment = .center
         homeButton.layer.cornerRadius = 5
@@ -243,7 +237,7 @@ class QuestionViewController: UIViewController {
         self.view.addSubview(homeButton)
         
         scoresButton = UIButton(frame: CGRect(x:screenRect.width/2+5,y:screenRect.height-50,width:screenRect.width/2-15, height: 40))
-        scoresButton.backgroundColor = .blue
+        scoresButton.backgroundColor = UIColor.blue.withAlphaComponent(0.7)
         scoresButton.setTitle("Scores", for: .normal)
         scoresButton.titleLabel?.textAlignment = .center
         scoresButton.layer.cornerRadius = 5
@@ -313,6 +307,8 @@ class QuestionViewController: UIViewController {
         let index = arc4random_uniform(UInt32(quizzes.count))
         var i = 0
         if quizzes.count > 0 {
+            points = 20
+            timeBar.frame = CGRect(x: 10, y: screenRect.height/2 - 20, width: screenRect.width-20, height: 40)
             for quiz in quizzes {
                 if Int(index) == i {
                     
@@ -347,7 +343,6 @@ class QuestionViewController: UIViewController {
 
                     usedQuizzes.append(quiz)
                     quizzes.remove(at: i)
-                    elapsedTimeBar.frame = CGRect(x: screenRect.width - 10, y: screenRect.height/2 - 20, width: 0, height: 40)
                     questionTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimeLeft), userInfo: nil, repeats: true)
                     
                     break
@@ -390,7 +385,6 @@ class QuestionViewController: UIViewController {
         blankLabel.isHidden = true
         
         timeBar.isHidden = true
-        elapsedTimeBar.isHidden = true
         pointsLabel.isHidden = true
         
         startQuizButton.isHidden = true
@@ -431,13 +425,17 @@ class QuestionViewController: UIViewController {
     
     func updateTimeLeft() {
         let growthLength = (screenRect.width - 20)/200
-        let newWidth = elapsedTimeBar.frame.size.width + growthLength
-        if newWidth <= screenRect.width - 20 {
-            timeBar.frame = CGRect(x: 10, y: screenRect.height/2-20, width: screenRect.width-20-newWidth, height: 40)
-            elapsedTimeBar.frame = CGRect(x: screenRect.width - 10 - newWidth, y: screenRect.height/2-20, width: newWidth, height: 40)
-            pointsLabel.frame = CGRect(x: screenRect.width - 100 - newWidth, y: screenRect.height/2-20, width: 80, height: 40)
+        let newWidth = timeBar.frame.size.width - growthLength
+        if newWidth >= 0 {
+            timeBar.frame = CGRect(x: 10, y: screenRect.height/2-20, width: newWidth, height: 40)
+            pointsLabel.frame = CGRect(x: newWidth - 80, y: screenRect.height/2-20, width: 80, height: 40)
             points = points - 0.1
             pointsLabel.text = String(format:"%.1f", points)
+            if newWidth < (screenRect.width - 20)/10 {
+                pointsLabel.isHidden = true
+            } else {
+                pointsLabel.isHidden = false
+            }
         } else {
             questionTimer.invalidate()
             incorrectAnswerActions()
@@ -451,8 +449,7 @@ class QuestionViewController: UIViewController {
     }
     
     func nextButtonPressed(_ sender: Any) {
-        points = 20
-        
+    
         if startQuizButton.titleLabel?.text == "Start Quiz" {
             startQuizButton.frame = CGRect(x:screenRect.width/2+5,y:screenRect.height-50,width:screenRect.width/2-15, height: 40)
             endQuizButton.frame = CGRect(x:10,y:screenRect.height-50,width:screenRect.width/2-15, height: 40)
@@ -474,7 +471,7 @@ class QuestionViewController: UIViewController {
         } else {
             toggleButtonEnabled(button: startQuizButton)
             for button in buttons {
-                button.backgroundColor = .white
+                button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
                 button.layer.borderColor = UIColor.black.cgColor
                 button.setTitleColor(.black, for: .normal)
                 button.isEnabled = true
@@ -488,7 +485,7 @@ class QuestionViewController: UIViewController {
     func toggleButtonEnabled(button: UIButton) {
         button.isEnabled = !button.isEnabled
         if button.isEnabled {
-            startQuizButton.backgroundColor = startQuizButton.backgroundColor?.withAlphaComponent(1.0)
+            startQuizButton.backgroundColor = startQuizButton.backgroundColor?.withAlphaComponent(0.7)
         } else {
             startQuizButton.backgroundColor = startQuizButton.backgroundColor?.withAlphaComponent(0.3)
         }
@@ -537,7 +534,7 @@ class QuestionViewController: UIViewController {
             selection.layer.borderColor = green.cgColor
         } else {
             incorrectAnswerActions()
-            selection.backgroundColor = .red
+            selection.backgroundColor = UIColor.red.withAlphaComponent(0.7)
             selection.layer.borderColor = UIColor.red.cgColor
             selection.setTitleColor(.white, for: .normal)
         }

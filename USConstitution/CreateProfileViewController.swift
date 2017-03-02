@@ -60,7 +60,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
             tf!.layer.borderWidth = 1
             tf!.layer.borderColor = UIColor.black.cgColor
             tf!.layer.cornerRadius = 5
-            tf!.backgroundColor = UIColor.white
+            tf!.backgroundColor = UIColor.white.withAlphaComponent(0.7)
             self.view.addSubview(tf!)
             tf!.delegate = self
         }
@@ -74,7 +74,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
         submitButton.setTitleColor(.black,for:.normal)
         submitButton.layer.borderWidth = 1
         submitButton.layer.cornerRadius = 5
-        submitButton.backgroundColor = UIColor.white
+        submitButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         submitButton.addTarget(self, action: #selector(CreateProfileViewController.submitButtonPressed(_:)), for: .touchUpInside)
         
         cancelButton = UIButton(frame: CGRect(x: 20, y: screenRect.height - 60, width: screenRect.width - 40, height: 40))
@@ -82,7 +82,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
         cancelButton.setTitleColor(.black,for:.normal)
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.cornerRadius = 5
-        cancelButton.backgroundColor = UIColor.white
+        cancelButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         cancelButton.addTarget(self, action: #selector(CreateProfileViewController.cancelButtonPressed(_:)), for: .touchUpInside)
 
         self.view.addSubview(createProfileLabel)
@@ -101,7 +101,6 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     func displayNameAvailabilityCheck(displayName: String) {
         FirebaseClient.sharedInstance.doesDisplayNameExist(displayName, completion: { (exists, error) -> () in
             if let exists = exists {
-                print(exists)
                 if exists {
                     self.aiv.isHidden = true
                     self.aiv.stopAnimating()

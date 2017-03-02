@@ -35,7 +35,7 @@ class SelectLevelViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
-        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        backgroundImage.image = UIImage(named: "ConstitutionBackground2")
         self.view.addSubview(backgroundImage)
         
         let statusBarHeight = Int(UIApplication.shared.statusBarFrame.height)
@@ -47,10 +47,11 @@ class SelectLevelViewController: UIViewController {
         
         scoresButton = UIButton(frame: CGRect(x:10,y:screenRect.height-50,width:screenRect.width-20, height: 40))
         scoresButton.setTitle("Scores", for: .normal)
-        scoresButton.backgroundColor = .red
+        scoresButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
         scoresButton.layer.borderWidth = 1
         scoresButton.layer.borderColor = UIColor.red.cgColor
         scoresButton.layer.cornerRadius = 5
+        
         scoresButton.addTarget(self, action: #selector(self.scoresButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(scoresButton)
         
@@ -64,7 +65,7 @@ class SelectLevelViewController: UIViewController {
         logoutButton.layer.borderWidth = 1
         logoutButton.layer.borderColor = UIColor.black.cgColor
         logoutButton.layer.cornerRadius = 5
-        logoutButton.backgroundColor = UIColor.white
+        logoutButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         logoutButton.addTarget(self, action: #selector(self.logoutButtonPressed(_:)), for: .touchUpInside)
         self.view.addSubview(logoutButton)
         
@@ -124,7 +125,6 @@ class SelectLevelViewController: UIViewController {
             subtitles[i]?.textAlignment = .center
             subtitles[i]?.textColor = .white
             buttons[i]?.addSubview(subtitles[i]!)
-            print("subtitle \(i) added")
             i += 1
         }
         
@@ -136,33 +136,60 @@ class SelectLevelViewController: UIViewController {
             
         } else if userLevel == "Citizen" {
             
-            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.7)
             configureButton(button: patriotButton, label: subtitles[1]!, text: "Become a Patriot!", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.3)
             configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Locked", backgroundColor: .white, borderColor: UIColor.lightGray.cgColor, titleColor: .lightGray, enabled: false, alpha: 0.3)
             
         } else if userLevel == "Patriot" {
             
-            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
-            configureButton(button: patriotButton, label: subtitles[1]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.7)
+            configureButton(button: patriotButton, label: subtitles[1]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.7)
             configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Become a Founding Father!", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.3)
 
         } else {
             
-            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
-            configureButton(button: patriotButton, label: subtitles[1]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
-            configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 1.0)
+            configureButton(button: citizenButton, label: subtitles[0]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.7)
+            configureButton(button: patriotButton, label: subtitles[1]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.7)
+            configureButton(button: foundingFatherButton, label: subtitles[2]!, text: "Achieved", backgroundColor: .blue, borderColor: UIColor.blue.cgColor, titleColor: .white, enabled: true, alpha: 0.7)
             
         }
     
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+       
+        if appDelegate.firstTimeLevels {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
+            citizenButton.layer.transform = rotationTransform
+            patriotButton.layer.transform = rotationTransform
+            foundingFatherButton.layer.transform = rotationTransform
+            scoresButton.layer.transform = rotationTransform
+        
+            UIView.animate(withDuration: 0.4, delay: 0.0, animations: { () -> Void in
+                self.citizenButton.layer.transform = CATransform3DIdentity
+            })
+            UIView.animate(withDuration: 0.4, delay: 0.2, animations: { () -> Void in
+                self.patriotButton.layer.transform = CATransform3DIdentity
+            })
+            UIView.animate(withDuration: 0.4, delay: 0.4, animations: { () -> Void in
+                self.foundingFatherButton.layer.transform = CATransform3DIdentity
+            })
+            UIView.animate(withDuration: 0.4, delay: 0.6, animations: { () -> Void in
+                self.scoresButton.layer.transform = CATransform3DIdentity
+            })
+            appDelegate.firstTimeLevels = false
+        }
+
+    }
+
     func configureButton(button: UIButton, label: UILabel, text: String, backgroundColor: UIColor, borderColor: CGColor, titleColor: UIColor, enabled: Bool, alpha: CGFloat) {
         label.text = text
         button.backgroundColor = backgroundColor
         button.layer.borderColor = borderColor
+        button.layer.borderWidth = 3
         button.setTitleColor(titleColor, for: .normal)
         label.textColor = titleColor
-        button.isEnabled = true
+        button.isEnabled = enabled
         button.backgroundColor = button.backgroundColor?.withAlphaComponent(alpha)
     }
     
@@ -180,6 +207,7 @@ class SelectLevelViewController: UIViewController {
     
     func logoutButtonPressed(_ sender: Any) {
         FirebaseClient.sharedInstance.logout(vc: self)
+        appDelegate.firstTimeLevels = true
     }
     
     func scoresButtonPressed(_ sender: AnyObject) {

@@ -42,14 +42,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.layer.borderColor = UIColor.black.cgColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.cornerRadius = 5
-        emailTextField.backgroundColor = UIColor.white
+        emailTextField.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         passwordTextField = CustomTextField(frame: CGRect(x: 20, y: screenRect.height/2 + 10, width: screenRect.width-40, height: 40))
         passwordTextField.layer.borderColor = UIColor.black.cgColor
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 5
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Password"
-        passwordTextField.backgroundColor = UIColor.white
+        passwordTextField.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocorrectionType = .no
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.setTitleColor(.black, for: .normal)
         loginButton.layer.borderWidth = 1
         loginButton.layer.cornerRadius = 5
-        loginButton.backgroundColor = UIColor.white
+        loginButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), for: .touchUpInside)
         
         aiv = UIActivityIndicatorView(frame: CGRect(x: screenRect.width/2-20, y: screenRect.height/2 + 110, width: 40, height: 40))
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         createProfileButton.setTitleColor(.black, for: .normal)
         createProfileButton.layer.borderWidth = 1
         createProfileButton.layer.cornerRadius = 5
-        createProfileButton.backgroundColor = UIColor.white
+        createProfileButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         createProfileButton.addTarget(self, action: #selector(LoginViewController.createProfileButtonPressed(_:)), for: .touchUpInside)
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
@@ -100,6 +100,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if appDelegate.firstTimeTitle {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, -(screenRect.height/2 - 200), 0)
+            titleLabel.layer.transform = rotationTransform
+            subtitleLabel.layer.transform = rotationTransform
+        
+            UIView.animate(withDuration: 1.0, animations: { () -> Void in
+            self.titleLabel.layer.transform = CATransform3DIdentity
+            self.subtitleLabel.layer.transform = CATransform3DIdentity
+            })
+            appDelegate.firstTimeTitle = false
+        }
+        
+    }
+    
     func loginButtonPressed(_ sender: AnyObject) {
         aiv.startAnimating()
         aiv.isHidden = false
@@ -113,6 +129,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.aiv.stopAnimating()
                 print("login unsuccessful")
                 print(error?.localizedDescription as Any)
+                let alert = UIAlertController(title: "Error", message: "Your username and/or password is incorrect.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: false, completion: nil)
             }
         }
     }

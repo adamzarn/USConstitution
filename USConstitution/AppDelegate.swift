@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var displayName: String!
     var level: String!
     var userLevel: String!
+    
+    var firstTimeTitle = true
+    var firstTimeLevels = true
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

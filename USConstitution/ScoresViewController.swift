@@ -43,20 +43,20 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
-        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        backgroundImage.image = UIImage(named: "ConstitutionBackground2")
         self.view.addSubview(backgroundImage)
         
         let width = screenRect.width
         let height = screenRect.height
         
         scope = UISegmentedControl(items: ["My Scores", "All Scores"])
-        scope.backgroundColor = .white
+        scope.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         scope.frame = CGRect(x: 10, y: 30, width: width - 20, height: 25)
         scope.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
         scope.selectedSegmentIndex = 0
         
         level = UISegmentedControl(items: quizTypes)
-        level.backgroundColor = .white
+        level.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         level.frame = CGRect(x: 10, y: 65, width: width - 20, height: 25)
         level.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
         level.selectedSegmentIndex = levelIndex
@@ -70,9 +70,10 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         
         homeButton = UIButton(frame: CGRect(x:10,y:screenRect.height-50,width:screenRect.width-20, height: 40))
         homeButton.setTitle("Home", for: .normal)
-        homeButton.backgroundColor = .red
+        homeButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
         homeButton.layer.borderWidth = 1
         homeButton.layer.borderColor = UIColor.red.cgColor
+        homeButton.backgroundColor = homeButton.backgroundColor?.withAlphaComponent(0.7)
         homeButton.layer.cornerRadius = 5
         homeButton.addTarget(self, action: #selector(self.homeButtonPressed(_:)), for: .touchUpInside)
         
@@ -165,9 +166,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
                 path = "\(path!)/foundingFather"
             }
         }
-        
-        print(path!)
-        
+
         if alreadyLoaded[scope][level] {
             currentScores = resultArrays[scope][level]
             myTableView.reloadData()
