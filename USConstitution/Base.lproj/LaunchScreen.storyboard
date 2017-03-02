@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ConstitutionBackground" translatesAutoresizingMaskIntoConstraints="NO" id="wtL-41-rrA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ConstitutionBackground1" translatesAutoresizingMaskIntoConstraints="NO" id="wtL-41-rrA">
                                 <rect key="frame" x="-20" y="-20" width="415" height="707"/>
                             </imageView>
                         </subviews>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ConstitutionBackground" width="846" height="1024"/>
+        <image name="ConstitutionBackground1" width="846" height="1024"/>
     </resources>
 </document>

@@ -87,7 +87,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         createProfileButton.addTarget(self, action: #selector(LoginViewController.createProfileButtonPressed(_:)), for: .touchUpInside)
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
-        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        backgroundImage.image = UIImage(named: "ConstitutionBackground1")
         
         self.view.addSubview(backgroundImage)
         self.view.addSubview(titleLabel)
