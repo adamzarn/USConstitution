@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var emailTextField: CustomTextField!
     var passwordTextField: CustomTextField!
     var loginButton: UIButton!
+    var forgotPasswordButton: UIButton!
     var createProfileButton: UIButton!
     var backgroundImage: UIImageView!
     var aiv: UIActivityIndicatorView!
@@ -74,7 +75,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), for: .touchUpInside)
         
-        aiv = UIActivityIndicatorView(frame: CGRect(x: screenRect.width/2-20, y: screenRect.height/2 + 110, width: 40, height: 40))
+        
+        let attributes: [String: Any] = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 17.0),
+            NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue
+        ]
+        
+        let attributedTitle = NSMutableAttributedString(string: "Forgot Password?", attributes: attributes)
+        let size = attributedTitle.size()
+        forgotPasswordButton = UIButton(frame: CGRect(x: (screenRect.width/2) - size.width/2, y: screenRect.height/2 + 110, width: size.width, height: 40))
+        forgotPasswordButton.setAttributedTitle(attributedTitle, for: .normal)
+        forgotPasswordButton.setTitleColor(.black, for: .normal)
+        forgotPasswordButton.addTarget(self, action: #selector(LoginViewController.forgotPasswordButtonPressed(_:)), for: .touchUpInside)
+        
+        aiv = UIActivityIndicatorView(frame: CGRect(x: screenRect.width/2-20, y: screenRect.height/2 + 150, width: 40, height: 40))
         aiv.color = .black
         aiv.isHidden = true
         
@@ -95,6 +109,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(emailTextField)
         self.view.addSubview(passwordTextField)
         self.view.addSubview(loginButton)
+        self.view.addSubview(forgotPasswordButton)
         self.view.addSubview(aiv)
         self.view.addSubview(createProfileButton)
         
@@ -135,6 +150,49 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func forgotPasswordButtonPressed(_ sender: AnyObject) {
+        let alert = UIAlertController(title: "Send Reset Email", message: "Would you like a password reset email to be sent to the address below?", preferredStyle: .alert)
+        
+        let submitAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            if let field = alert.textFields?[0] {
+                
+                let secondAlert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+                secondAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                
+                if field.text != "" {
+                    FIRAuth.auth()?.sendPasswordReset(withEmail: field.text!) { error in
+                        if let errorMessage = error?.localizedDescription {
+                            secondAlert.title = "Email Not Sent"
+                            secondAlert.message = errorMessage
+                            self.present(secondAlert, animated: false, completion: nil)
+                        } else {
+                            secondAlert.title = "Email Sent"
+                            secondAlert.message = "Come back here when you've reset your password."
+                            self.present(secondAlert, animated: false, completion: nil)
+                        }
+                    }
+                } else {
+                    secondAlert.title = "No Email"
+                    secondAlert.message = "You must provide an email address."
+                    self.present(secondAlert, animated: false, completion: nil)
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Email"
+            textField.text = self.emailTextField.text
+        }
+        
+        alert.addAction(submitAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+
     
     func setUpUser(uid: String) {
         FirebaseClient.sharedInstance.getUserData(uid: uid, completion: { (user, error) -> () in

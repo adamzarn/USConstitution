@@ -266,7 +266,8 @@ class QuestionViewController: UIViewController {
         }
         
         if quizzes != nil {
-        
+            
+            randomlySelectQuestions(number: 10)
             loadingLabel.isHidden = true
             startQuizButton.isHidden = false
             startQuizButton.isEnabled = true
@@ -274,6 +275,7 @@ class QuestionViewController: UIViewController {
             maxScore = 20.0 * Double(quizzes.count)
         
         } else {
+            
             aiv.startAnimating()
             FirebaseClient.sharedInstance.getQuestions(level: level, completion: { (quizzes, error) -> () in
                 if let quizzes = quizzes {
@@ -285,6 +287,10 @@ class QuestionViewController: UIViewController {
                     } else {
                         self.appDelegate.FoundingFatherQuestions = quizzes
                     }
+                    
+                    //Now that all questions are saved, randomly select certain amount
+                    self.randomlySelectQuestions(number: 10)
+                    
                     self.aiv.stopAnimating()
                     self.aiv.isHidden = true
                     self.loadingLabel.isHidden = true
@@ -300,6 +306,18 @@ class QuestionViewController: UIViewController {
         
         usedQuizzes = []
         
+    }
+    
+    func randomlySelectQuestions(number: Int) {
+        var i = 0
+        while quizzes.count > number {
+            let numberOfQuestionsRemaining = quizzes.count
+            let randomNumber = arc4random_uniform(UInt32(numberOfQuestionsRemaining))
+            print(randomNumber)
+            print(quizzes.count)
+            quizzes.remove(at: Int(randomNumber))
+            i = i + 1
+        }
     }
     
     func setUpView() {

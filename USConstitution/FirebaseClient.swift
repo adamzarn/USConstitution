@@ -38,12 +38,11 @@ class FirebaseClient: NSObject {
         })
     }
     
-    func addNewUser(uid: String, displayName: String, email: String, password: String, level: String) {
+    func addNewUser(uid: String, displayName: String, email: String, level: String) {
         
         let userRef = self.ref.child("Users/\(uid)")
         userRef.child("displayName").setValue(displayName)
         userRef.child("email").setValue(email)
-        userRef.child("password").setValue(password)
         userRef.child("level").setValue(level)
         
         let displayNameRef = self.ref.child("DisplayNames/\(uid)")
@@ -70,9 +69,8 @@ class FirebaseClient: NSObject {
                 let userDict = snapshot.value as! NSDictionary
                 let displayName = userDict["displayName"] as! String
                 let email = userDict["email"] as! String
-                let password = userDict["password"] as! String
                 let level = userDict["level"] as! String
-                let user = User(displayName: displayName, email: email, password: password, level: level)
+                let user = User(displayName: displayName, email: email, level: level)
                 completion(user, nil)
             } else {
                 completion(nil, "No Display Name Exists")

@@ -23,13 +23,11 @@ struct Quiz {
 struct User {
     let displayName: String
     let email: String
-    let password: String
     let level: String
     
-    init(displayName: String, email: String, password: String, level: String) {
+    init(displayName: String, email: String, level: String) {
         self.displayName = displayName
         self.email = email
-        self.password = password
         self.level = level
     }
     

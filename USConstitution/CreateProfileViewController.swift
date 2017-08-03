@@ -48,7 +48,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
         verifyPasswordTextField.isSecureTextEntry = true
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
-        backgroundImage.image = UIImage(named: "ConstitutionBackground")
+        backgroundImage.image = UIImage(named: "ConstitutionBackground2")
         
         self.view.addSubview(backgroundImage)
         
@@ -133,7 +133,11 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
         
         FIRAuth.auth()?.createUser(withEmail: email!, password: password!) { (user, error) in
             if let user = user {
+                let newUser = user as FIRUser
                 self.signedIn(user: user)
+                FirebaseClient.sharedInstance.addNewUser(uid: newUser.uid, displayName: self.displayNameTextField.text!, email: self.emailTextField.text!, level: "New")
+                self.appDelegate.userLevel = "New"
+                print("\(newUser.email!) is signed in")
             } else {
                 print("profile creation unsuccessful")
                 self.aiv.isHidden = true
@@ -148,9 +152,6 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     func signedIn(user: FIRUser?) {
         appDelegate.uid = (user?.uid)!
         appDelegate.displayName = displayNameTextField.text!
-        appDelegate.userLevel = "New"
-        FirebaseClient.sharedInstance.addNewUser(uid: (user?.uid)!, displayName: displayNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, level: "New")
-        print("\(user?.email!) is signed in")
         let slvc = self.storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
         self.present(slvc, animated: false, completion: nil)
         aiv.stopAnimating()
