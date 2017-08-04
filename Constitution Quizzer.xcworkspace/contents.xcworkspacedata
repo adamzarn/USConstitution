@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/adamzarn/Documents/iOSProjects/USConstitution/Constitution Quizzer.xcodeproj">
+      location = "group:Constitution Quizzer.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

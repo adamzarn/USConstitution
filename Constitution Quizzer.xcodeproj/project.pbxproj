@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4328D3A05E7BDBF686FC21FB /* Pods_USConstitution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCEBA4530F0D9B3D7DDDE87 /* Pods_USConstitution.framework */; };
+		088D69A042C31CF69C6DA7C1 /* Pods_Constitution_Quizzer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2364FA090391A10984E66212 /* Pods_Constitution_Quizzer.framework */; };
+		6C43C2297CD22341232129A2 /* Pods_Constitution_QuizzerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A06ED51E82BD9FF3728707 /* Pods_Constitution_QuizzerTests.framework */; };
+		BE0F28E3255F0225FD6F1E9E /* Pods_Constitution_QuizzerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60C7C8997F88B832A43A77E /* Pods_Constitution_QuizzerUITests.framework */; };
 		DB2C95FD1F33CE3F00FBDB99 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */; };
 		DB2C95FF1F33CE8500FBDB99 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */; };
 		DB37D92C1E6612CB00CFC2AC /* Canterbury.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB37D92B1E66120800CFC2AC /* Canterbury.ttf */; };
@@ -45,15 +47,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05391C2D2FBCB93A61720E22 /* Pods-USConstitutionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionTests/Pods-USConstitutionTests.debug.xcconfig"; sourceTree = "<group>"; };
-		0DCC1557A109BB325CBAE18E /* Pods-USConstitutionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionTests/Pods-USConstitutionTests.release.xcconfig"; sourceTree = "<group>"; };
-		1BCEBA4530F0D9B3D7DDDE87 /* Pods_USConstitution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_USConstitution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		33B1C970A78C884E9033AE84 /* Pods-USConstitution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitution.debug.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution.debug.xcconfig"; sourceTree = "<group>"; };
-		43D3315838811826E403D9C5 /* Pods_USConstitutionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_USConstitutionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5064867BDA4275916EB8F5FA /* Pods_USConstitutionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_USConstitutionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		658FCCB0B300992799E865A0 /* Pods-USConstitution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitution.release.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution.release.xcconfig"; sourceTree = "<group>"; };
-		B126FEDA5D89BF50147BC5D7 /* Pods-USConstitutionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionUITests/Pods-USConstitutionUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		CD858BAE88E645CE131C267B /* Pods-USConstitutionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionUITests/Pods-USConstitutionUITests.release.xcconfig"; sourceTree = "<group>"; };
+		07A06ED51E82BD9FF3728707 /* Pods_Constitution_QuizzerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Constitution_QuizzerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2364FA090391A10984E66212 /* Pods_Constitution_Quizzer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Constitution_Quizzer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28C07FFAE9F4F47EB0472255 /* Pods-Constitution Quizzer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution Quizzer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution Quizzer/Pods-Constitution Quizzer.release.xcconfig"; sourceTree = "<group>"; };
+		4D15F14051120F456C6EF569 /* Pods-Constitution Quizzer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution Quizzer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution Quizzer/Pods-Constitution Quizzer.debug.xcconfig"; sourceTree = "<group>"; };
+		778E5A0C35900ED1BEBAE9CC /* Pods-Constitution QuizzerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution QuizzerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution QuizzerTests/Pods-Constitution QuizzerTests.release.xcconfig"; sourceTree = "<group>"; };
+		DB1603D51F34FA2500ADC2C5 /* Constitution Quizzer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Constitution Quizzer.entitlements"; sourceTree = "<group>"; };
 		DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		DB37D92B1E66120800CFC2AC /* Canterbury.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Canterbury.ttf; sourceTree = "<group>"; };
@@ -77,6 +76,10 @@
 		DBCB72CF1E1322DF00F4B6F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBCB72D11E1322DF00F4B6F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EEF8015D1B116EDC36F98408 /* Pods-Constitution QuizzerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution QuizzerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution QuizzerUITests/Pods-Constitution QuizzerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F41A5D2C79DB3E07B9F2FED0 /* Pods-Constitution QuizzerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution QuizzerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution QuizzerTests/Pods-Constitution QuizzerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F60C7C8997F88B832A43A77E /* Pods_Constitution_QuizzerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Constitution_QuizzerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F72C6796EC4DAF6603EE0F24 /* Pods-Constitution QuizzerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution QuizzerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution QuizzerUITests/Pods-Constitution QuizzerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0F28E3255F0225FD6F1E9E /* Pods_Constitution_QuizzerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C43C2297CD22341232129A2 /* Pods_Constitution_QuizzerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,22 +103,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4328D3A05E7BDBF686FC21FB /* Pods_USConstitution.framework in Frameworks */,
+				088D69A042C31CF69C6DA7C1 /* Pods_Constitution_Quizzer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AD02F04299CB36D0ADC408FC /* Pods */ = {
+		5CC2672FAA55EA054896CA78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				33B1C970A78C884E9033AE84 /* Pods-USConstitution.debug.xcconfig */,
-				658FCCB0B300992799E865A0 /* Pods-USConstitution.release.xcconfig */,
-				05391C2D2FBCB93A61720E22 /* Pods-USConstitutionTests.debug.xcconfig */,
-				0DCC1557A109BB325CBAE18E /* Pods-USConstitutionTests.release.xcconfig */,
-				B126FEDA5D89BF50147BC5D7 /* Pods-USConstitutionUITests.debug.xcconfig */,
-				CD858BAE88E645CE131C267B /* Pods-USConstitutionUITests.release.xcconfig */,
+				2364FA090391A10984E66212 /* Pods_Constitution_Quizzer.framework */,
+				07A06ED51E82BD9FF3728707 /* Pods_Constitution_QuizzerTests.framework */,
+				F60C7C8997F88B832A43A77E /* Pods_Constitution_QuizzerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		826C45D4F06DD03AE1765885 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D15F14051120F456C6EF569 /* Pods-Constitution Quizzer.debug.xcconfig */,
+				28C07FFAE9F4F47EB0472255 /* Pods-Constitution Quizzer.release.xcconfig */,
+				F41A5D2C79DB3E07B9F2FED0 /* Pods-Constitution QuizzerTests.debug.xcconfig */,
+				778E5A0C35900ED1BEBAE9CC /* Pods-Constitution QuizzerTests.release.xcconfig */,
+				EEF8015D1B116EDC36F98408 /* Pods-Constitution QuizzerUITests.debug.xcconfig */,
+				F72C6796EC4DAF6603EE0F24 /* Pods-Constitution QuizzerUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -143,8 +158,8 @@
 				DBA7D2E41F34F719003F473C /* Constitution QuizzerUITests */,
 				DBA7D2F21F34F733003F473C /* Constitution QuizzerTests */,
 				DBCB72C01E1322DF00F4B6F0 /* Products */,
-				AD02F04299CB36D0ADC408FC /* Pods */,
-				E2C40A1818E6BAF1928F9ADD /* Frameworks */,
+				826C45D4F06DD03AE1765885 /* Pods */,
+				5CC2672FAA55EA054896CA78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +176,7 @@
 		DBCB72C11E1322DF00F4B6F0 /* Constitution Quizzer */ = {
 			isa = PBXGroup;
 			children = (
+				DB1603D51F34FA2500ADC2C5 /* Constitution Quizzer.entitlements */,
 				DBCB72C21E1322DF00F4B6F0 /* AppDelegate.swift */,
 				DBAEB64D1E135BC000F9A540 /* Quiz.swift */,
 				DBAEB64B1E135AF900F9A540 /* FirebaseClient.swift */,
@@ -181,16 +197,6 @@
 			path = "Constitution Quizzer";
 			sourceTree = "<group>";
 		};
-		E2C40A1818E6BAF1928F9ADD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1BCEBA4530F0D9B3D7DDDE87 /* Pods_USConstitution.framework */,
-				43D3315838811826E403D9C5 /* Pods_USConstitutionTests.framework */,
-				5064867BDA4275916EB8F5FA /* Pods_USConstitutionUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,9 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBA7D2EA1F34F719003F473C /* Build configuration list for PBXNativeTarget "Constitution QuizzerUITests" */;
 			buildPhases = (
+				74E67F1A779372E05FDA598D /* [CP] Check Pods Manifest.lock */,
 				DBA7D2DF1F34F719003F473C /* Sources */,
 				DBA7D2E01F34F719003F473C /* Frameworks */,
 				DBA7D2E11F34F719003F473C /* Resources */,
+				148227B011FD4CCF91757AB4 /* [CP] Embed Pods Frameworks */,
+				F9AE8C0C46F6676D27C34486 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,9 +225,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBA7D2F81F34F733003F473C /* Build configuration list for PBXNativeTarget "Constitution QuizzerTests" */;
 			buildPhases = (
+				C82894A7E06A70294AAF4210 /* [CP] Check Pods Manifest.lock */,
 				DBA7D2ED1F34F733003F473C /* Sources */,
 				DBA7D2EE1F34F733003F473C /* Frameworks */,
 				DBA7D2EF1F34F733003F473C /* Resources */,
+				63FA367CE539CFB60126025D /* [CP] Embed Pods Frameworks */,
+				F8283E71B9427B9098F976D8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,19 +246,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBCB72EA1E1322DF00F4B6F0 /* Build configuration list for PBXNativeTarget "Constitution Quizzer" */;
 			buildPhases = (
-				93648159FC27875A5F940936 /* [CP] Check Pods Manifest.lock */,
+				2B813EEA2B93E8D20384CC0D /* [CP] Check Pods Manifest.lock */,
 				DBCB72BB1E1322DE00F4B6F0 /* Sources */,
 				DBCB72BC1E1322DE00F4B6F0 /* Frameworks */,
 				DBCB72BD1E1322DE00F4B6F0 /* Resources */,
-				5C11ACFDFAF765A665217543 /* [CP] Embed Pods Frameworks */,
-				A16D43A2A0E99B9E49B29255 /* [CP] Copy Pods Resources */,
+				44695E18F91895D31723ECF6 /* [CP] Embed Pods Frameworks */,
+				90E8A97ED723E5EA5E6E2AA9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Constitution Quizzer";
-			productName = USConstitution;
+			productName = ConstitutionQuizzer;
 			productReference = DBCB72BF1E1322DF00F4B6F0 /* Constitution Quizzer.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -257,7 +269,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Adam Zarn";
 				TargetAttributes = {
 					DBA7D2E21F34F719003F473C = {
@@ -334,7 +346,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5C11ACFDFAF765A665217543 /* [CP] Embed Pods Frameworks */ = {
+		148227B011FD4CCF91757AB4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -346,10 +358,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Constitution QuizzerUITests/Pods-Constitution QuizzerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93648159FC27875A5F940936 /* [CP] Check Pods Manifest.lock */ = {
+		2B813EEA2B93E8D20384CC0D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,10 +373,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A16D43A2A0E99B9E49B29255 /* [CP] Copy Pods Resources */ = {
+		44695E18F91895D31723ECF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Constitution Quizzer/Pods-Constitution Quizzer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63FA367CE539CFB60126025D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Constitution QuizzerTests/Pods-Constitution QuizzerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74E67F1A779372E05FDA598D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		90E8A97ED723E5EA5E6E2AA9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,7 +433,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Constitution Quizzer/Pods-Constitution Quizzer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C82894A7E06A70294AAF4210 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F8283E71B9427B9098F976D8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Constitution QuizzerTests/Pods-Constitution QuizzerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9AE8C0C46F6676D27C34486 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Constitution QuizzerUITests/Pods-Constitution QuizzerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -452,6 +554,7 @@
 /* Begin XCBuildConfiguration section */
 		DBA7D2EB1F34F719003F473C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEF8015D1B116EDC36F98408 /* Pods-Constitution QuizzerUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -468,6 +571,7 @@
 		};
 		DBA7D2EC1F34F719003F473C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F72C6796EC4DAF6603EE0F24 /* Pods-Constitution QuizzerUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -484,6 +588,7 @@
 		};
 		DBA7D2F91F34F733003F473C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F41A5D2C79DB3E07B9F2FED0 /* Pods-Constitution QuizzerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -501,6 +606,7 @@
 		};
 		DBA7D2FA1F34F733003F473C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 778E5A0C35900ED1BEBAE9CC /* Pods-Constitution QuizzerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -534,6 +640,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -583,6 +690,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -609,10 +717,10 @@
 		};
 		DBCB72EB1E1322DF00F4B6F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33B1C970A78C884E9033AE84 /* Pods-USConstitution.debug.xcconfig */;
+			baseConfigurationReference = 4D15F14051120F456C6EF569 /* Pods-Constitution Quizzer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Constitution Quizzer/USConstitution.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Constitution Quizzer/Constitution Quizzer.entitlements";
 				DEVELOPMENT_TEAM = QA67695N79;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Constitution Quizzer/Info.plist";
@@ -626,10 +734,10 @@
 		};
 		DBCB72EC1E1322DF00F4B6F0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 658FCCB0B300992799E865A0 /* Pods-USConstitution.release.xcconfig */;
+			baseConfigurationReference = 28C07FFAE9F4F47EB0472255 /* Pods-Constitution Quizzer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Constitution Quizzer/USConstitution.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Constitution Quizzer/Constitution Quizzer.entitlements";
 				DEVELOPMENT_TEAM = QA67695N79;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Constitution Quizzer/Info.plist";
@@ -651,6 +759,7 @@
 				DBA7D2EC1F34F719003F473C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBA7D2F81F34F733003F473C /* Build configuration list for PBXNativeTarget "Constitution QuizzerTests" */ = {
 			isa = XCConfigurationList;
@@ -659,6 +768,7 @@
 				DBA7D2FA1F34F733003F473C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBCB72BA1E1322DE00F4B6F0 /* Build configuration list for PBXProject "Constitution Quizzer" */ = {
 			isa = XCConfigurationList;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBCB72D51E1322DF00F4B6F0"
+               BlueprintIdentifier = "DBA7D2F01F34F733003F473C"
                BuildableName = "Constitution QuizzerTests.xctest"
                BlueprintName = "Constitution QuizzerTests"
                ReferencedContainer = "container:Constitution Quizzer.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBCB72E01E1322DF00F4B6F0"
+               BlueprintIdentifier = "DBA7D2E21F34F719003F473C"
                BuildableName = "Constitution QuizzerUITests.xctest"
                BlueprintName = "Constitution QuizzerUITests"
                ReferencedContainer = "container:Constitution Quizzer.xcodeproj">

@@ -1,0 +1,6 @@
+framework module Pods_Constitution_QuizzerUITests {
+  umbrella header "Pods-Constitution QuizzerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "157FB7F838ADB9563F3ED476D71B09CE"
-               BuildableName = "Pods_USConstitutionUITests.framework"
-               BlueprintName = "Pods-USConstitutionUITests"
+               BlueprintIdentifier = "92496472DA7C1B32B001362E355B533C"
+               BuildableName = "Pods_Constitution_Quizzer.framework"
+               BlueprintName = "Pods-Constitution Quizzer"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "157FB7F838ADB9563F3ED476D71B09CE"
-            BuildableName = "Pods_USConstitutionUITests.framework"
-            BlueprintName = "Pods-USConstitutionUITests"
+            BlueprintIdentifier = "92496472DA7C1B32B001362E355B533C"
+            BuildableName = "Pods_Constitution_Quizzer.framework"
+            BlueprintName = "Pods-Constitution Quizzer"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

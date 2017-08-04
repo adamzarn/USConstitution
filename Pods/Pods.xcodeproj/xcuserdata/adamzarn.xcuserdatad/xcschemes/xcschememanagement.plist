@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-USConstitution.xcscheme</key>
+		<key>Pods-Constitution Quizzer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-USConstitutionTests.xcscheme</key>
+		<key>Pods-Constitution QuizzerTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-USConstitutionUITests.xcscheme</key>
+		<key>Pods-Constitution QuizzerUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>157FB7F838ADB9563F3ED476D71B09CE</key>
+		<key>70CCF486D7F0F6D1048D638BE07554E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55EBCB677635A2655C56998C2E299C2F</key>
+		<key>92496472DA7C1B32B001362E355B533C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD0A052D4A18D0786841C97E409A7FC4</key>
+		<key>BA4A7F666735CB72F179D91FCE21FE48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
