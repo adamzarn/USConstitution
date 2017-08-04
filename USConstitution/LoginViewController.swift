@@ -117,6 +117,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        subscribeToKeyboardNotifications()
+        
         if appDelegate.firstTimeTitle {
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, -(screenRect.height/2 - 200), 0)
             titleLabel.layer.transform = rotationTransform
@@ -129,6 +131,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             appDelegate.firstTimeTitle = false
         }
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        unsubscribeFromKeyboardNotifications()
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow,object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    func keyboardWillShow(notification: Notification) {
+        view.frame.origin.y = (-1*getKeyboardHeight(notification: notification))/2
+    }
+    
+    func keyboardWillHide(notification: Notification) {
+        view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(notification: Notification) -> CGFloat {
+        let userInfo = notification.userInfo!
+        let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
     }
     
     func loginButtonPressed(_ sender: AnyObject) {

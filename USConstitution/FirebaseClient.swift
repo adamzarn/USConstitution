@@ -73,6 +73,7 @@ class FirebaseClient: NSObject {
                 let user = User(displayName: displayName, email: email, level: level)
                 completion(user, nil)
             } else {
+                print("Snapshot doesn't exist")
                 completion(nil, "No Display Name Exists")
             }
         })
@@ -100,15 +101,15 @@ class FirebaseClient: NSObject {
         var message: String!
         if score >= scoreNeeded {
             if userLevel == "New" && level == "citizen" {
-                message = "You are now a Citizen! \n The Patriot Quiz has been unlocked!"
+                message = "Congratulations, you are now a Citizen! \n The Patriot Quiz has been unlocked!"
                 userLevelRef.setValue("Citizen")
                 self.appDelegate.userLevel = "Citizen"
             } else if userLevel == "Citizen" && level == "patriot" {
-                message = "You are now a Patriot! \n The Founding Father Quiz has been unlocked!"
+                message = "Congratulations, you are now a Patriot! \n The Founding Father Quiz has been unlocked!"
                 userLevelRef.setValue("Patriot")
                 self.appDelegate.userLevel = "Patriot"
             } else if userLevel == "Patriot" && level == "foundingFather" {
-                message = "You are now a Founding Father! \n Congratulations!"
+                message = "Congratulations, you are now a Founding Father! \n Keep playing to climb up the leaderboard!"
                 userLevelRef.setValue("Founding Father")
                 self.appDelegate.userLevel = "Founding Father"
             } else {

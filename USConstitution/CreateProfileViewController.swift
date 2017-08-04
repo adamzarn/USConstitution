@@ -40,6 +40,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
         createProfileLabel.textAlignment = .center
         displayNameTextField.placeholder = "Display Name"
         emailTextField.placeholder = "Email"
+        emailTextField.keyboardType = .emailAddress
         passwordTextField.placeholder = "Password"
         verifyPasswordTextField.placeholder = "Verify Password"
         
