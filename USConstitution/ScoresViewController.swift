@@ -54,12 +54,14 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         scope.frame = CGRect(x: 10, y: 30, width: width - 20, height: 25)
         scope.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
         scope.selectedSegmentIndex = 0
+        scope.apportionsSegmentWidthsByContent = true
         
         level = UISegmentedControl(items: quizTypes)
         level.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         level.frame = CGRect(x: 10, y: 65, width: width - 20, height: 25)
         level.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
         level.selectedSegmentIndex = levelIndex
+        level.apportionsSegmentWidthsByContent = true
         
         aiv = UIActivityIndicatorView(frame: CGRect(x:width/2-10,y: 150, width: 20, height: 20))
         aiv.hidesWhenStopped = true
@@ -86,6 +88,8 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         label.text = "My \(quizTypes[levelIndex]) Scores"
         label.textAlignment = .center
         label.font = UIFont(name: "Canterbury", size: 30.0)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.25
         self.view.addSubview(label)
         
         myTableView.frame = CGRect(x: 0, y: 135, width: width, height: height - 135 - homeButton.frame.height - 20)
@@ -99,6 +103,23 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if !GlobalFunctions.shared.hasConnectivity() {
+            
+            self.aiv.stopAnimating()
+            self.aiv.isHidden = true
+            let alert = UIAlertController(title: "No Internet Connectivity", message: "Unable to retrieve scores. Establish an Internet Connection and try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                let slvc = self.storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
+                self.present(slvc, animated: false, completion: nil)
+            })
+            self.present(alert, animated: false, completion: nil)
+            
+        }
+
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentScores.count
     }
@@ -107,11 +128,10 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         if scope.selectedSegmentIndex == 0 {
             cell.textLabel?.text = "\(indexPath.row + 1). \(currentScores[indexPath.row].score)"
-            cell.detailTextLabel?.text = formattedTimestamp(ts: currentScores[indexPath.row].timestamp)
         } else {
-            cell.textLabel?.text = "\(indexPath.row + 1). \(currentScores[indexPath.row].displayName)"
-            cell.detailTextLabel?.text = String(currentScores[indexPath.row].score)
+            cell.textLabel?.text = "\(indexPath.row + 1). \(currentScores[indexPath.row].displayName) - \(String(currentScores[indexPath.row].score))"
         }
+        cell.detailTextLabel?.text = formattedTimestamp(ts: currentScores[indexPath.row].timestamp)
         cell.backgroundColor = .clear
         return cell
     }
@@ -173,19 +193,25 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
             myTableView.isHidden = false
             aiv.stopAnimating()
         } else {
-            FirebaseClient.sharedInstance.getScores(path: path!, completion: { (scores, error) -> () in
-                if let scores = scores {
-                    self.resultArrays[scope][level] = scores
-                    self.resultArrays[scope][level].sort { $0.score > $1.score }
-                    self.currentScores = self.resultArrays[scope][level]
-                    self.myTableView.reloadData()
-                    self.myTableView.isHidden = false
-                    self.aiv.stopAnimating()
-                    self.alreadyLoaded[scope][level] = true
-                } else {
-                    print(error!)
-                }
-            })
+            
+            if GlobalFunctions.shared.hasConnectivity() {
+            
+                FirebaseClient.sharedInstance.getScores(path: path!, completion: { (scores, error) -> () in
+                    if let scores = scores {
+                        self.resultArrays[scope][level] = scores
+                        self.resultArrays[scope][level].sort { $0.score > $1.score }
+                        self.currentScores = self.resultArrays[scope][level]
+                        self.myTableView.reloadData()
+                        self.myTableView.isHidden = false
+                        self.aiv.stopAnimating()
+                        self.alreadyLoaded[scope][level] = true
+                    } else {
+                        print(error!)
+                    }
+                })
+                
+            }
+            
         }
     
     }

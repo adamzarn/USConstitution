@@ -134,6 +134,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func loginButtonPressed(_ sender: AnyObject) {
         aiv.startAnimating()
         aiv.isHidden = false
+        
+        if emailTextField.text == "" || passwordTextField.text == "" {
+            self.aiv.isHidden = true
+            self.aiv.stopAnimating()
+            let alert = UIAlertController(title: "Error", message: "You must provide an email and password to login.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: false, completion: nil)
+            return
+        }
+        
         FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if let user = user {
                 self.defaults.set(self.emailTextField.text! as String, forKey: "lastEmail")
@@ -142,9 +152,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             } else {
                 self.aiv.isHidden = true
                 self.aiv.stopAnimating()
-                print("login unsuccessful")
-                print(error?.localizedDescription as Any)
-                let alert = UIAlertController(title: "Error", message: "Your username and/or password is incorrect.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: false, completion: nil)
             }

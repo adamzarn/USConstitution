@@ -99,20 +99,32 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayNameAvailabilityCheck(displayName: String) {
-        FirebaseClient.sharedInstance.doesDisplayNameExist(displayName, completion: { (exists, error) -> () in
-            if let exists = exists {
-                if exists {
-                    self.aiv.isHidden = true
-                    self.aiv.stopAnimating()
-                    self.displayNameTextField.becomeFirstResponder()
-                    let alert = UIAlertController(title: "Display Name Unavailable", message: "Please choose another display name.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: false, completion: nil)
-                } else {
-                    self.verifyPassword()
+        
+        if GlobalFunctions.shared.hasConnectivity() {
+        
+            FirebaseClient.sharedInstance.doesDisplayNameExist(displayName, completion: { (exists, error) -> () in
+                if let exists = exists {
+                    if exists {
+                        self.aiv.isHidden = true
+                        self.aiv.stopAnimating()
+                        self.displayNameTextField.becomeFirstResponder()
+                        let alert = UIAlertController(title: "Display Name Unavailable", message: "Please choose another display name.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: false, completion: nil)
+                    } else {
+                        self.verifyPassword()
+                    }
                 }
-            }
-        })
+            })
+        
+        } else {
+            aiv.isHidden = true
+            aiv.stopAnimating()
+            let alert = UIAlertController(title: "No Internet Connectivity", message: "Establish an Internet Connection and try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: false, completion: nil)
+            
+        }
     }
     
     func verifyPassword() {
@@ -131,22 +143,35 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
         let email = emailTextField.text
         let password = passwordTextField.text
         
-        FIRAuth.auth()?.createUser(withEmail: email!, password: password!) { (user, error) in
-            if let user = user {
-                let newUser = user as FIRUser
-                self.signedIn(user: user)
-                FirebaseClient.sharedInstance.addNewUser(uid: newUser.uid, displayName: self.displayNameTextField.text!, email: self.emailTextField.text!, level: "New")
-                self.appDelegate.userLevel = "New"
-                print("\(newUser.email!) is signed in")
-            } else {
-                print("profile creation unsuccessful")
-                self.aiv.isHidden = true
-                self.aiv.stopAnimating()
-                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: false, completion: nil)
+        if GlobalFunctions.shared.hasConnectivity() {
+        
+            FIRAuth.auth()?.createUser(withEmail: email!, password: password!) { (user, error) in
+                if let user = user {
+                    let newUser = user as FIRUser
+                    self.appDelegate.userLevel = "New"
+                    self.signedIn(user: user)
+                    FirebaseClient.sharedInstance.addNewUser(uid: newUser.uid, displayName: self.displayNameTextField.text!, email: self.emailTextField.text!, level: "New")
+                    print("\(newUser.email!) is signed in")
+                } else {
+                    print("profile creation unsuccessful")
+                    self.aiv.isHidden = true
+                    self.aiv.stopAnimating()
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: false, completion: nil)
+                }
             }
+            
+        } else {
+            
+            aiv.isHidden = true
+            aiv.stopAnimating()
+            let alert = UIAlertController(title: "No Internet Connectivity", message: "Establish an Internet Connection and try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: false, completion: nil)
+            
         }
+        
     }
     
     func signedIn(user: FIRUser?) {

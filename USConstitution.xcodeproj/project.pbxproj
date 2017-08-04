@@ -10,6 +10,8 @@
 		35185FCCF52FF51F4DCA0B2D /* Pods_USConstitutionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5064867BDA4275916EB8F5FA /* Pods_USConstitutionUITests.framework */; };
 		36B85E2DE1FE4FB7046399E9 /* Pods_USConstitutionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D3315838811826E403D9C5 /* Pods_USConstitutionTests.framework */; };
 		4328D3A05E7BDBF686FC21FB /* Pods_USConstitution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCEBA4530F0D9B3D7DDDE87 /* Pods_USConstitution.framework */; };
+		DB2C95FD1F33CE3F00FBDB99 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */; };
+		DB2C95FF1F33CE8500FBDB99 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */; };
 		DB37D92C1E6612CB00CFC2AC /* Canterbury.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB37D92B1E66120800CFC2AC /* Canterbury.ttf */; };
 		DB63F89D1E1A0F3A00FB8699 /* ScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */; };
 		DBA304531E1867300023D678 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA304521E1867300023D678 /* LoginViewController.swift */; };
@@ -56,6 +58,8 @@
 		658FCCB0B300992799E865A0 /* Pods-USConstitution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitution.release.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution.release.xcconfig"; sourceTree = "<group>"; };
 		B126FEDA5D89BF50147BC5D7 /* Pods-USConstitutionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionUITests/Pods-USConstitutionUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD858BAE88E645CE131C267B /* Pods-USConstitutionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-USConstitutionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-USConstitutionUITests/Pods-USConstitutionUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		DB37D92B1E66120800CFC2AC /* Canterbury.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Canterbury.ttf; sourceTree = "<group>"; };
 		DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresViewController.swift; sourceTree = "<group>"; };
 		DBA304521E1867300023D678 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				DBCB72D11E1322DF00F4B6F0 /* Info.plist */,
 				DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */,
 				DBCB72C91E1322DF00F4B6F0 /* USConstitution.xcdatamodeld */,
+				DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */,
+				DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */,
 			);
 			path = USConstitution;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2C95FF1F33CE8500FBDB99 /* GlobalFunctions.swift in Sources */,
 				DBA304551E18748E0023D678 /* CreateProfileViewController.swift in Sources */,
 				DBA304531E1867300023D678 /* LoginViewController.swift in Sources */,
 				DBCB72C51E1322DF00F4B6F0 /* SelectLevelViewController.swift in Sources */,
@@ -479,6 +486,7 @@
 				DBAEB64C1E135AF900F9A540 /* FirebaseClient.swift in Sources */,
 				DBAEB64E1E135BC000F9A540 /* Quiz.swift in Sources */,
 				DBAEB64A1E133C6300F9A540 /* QuestionViewController.swift in Sources */,
+				DB2C95FD1F33CE3F00FBDB99 /* Reachability.swift in Sources */,
 				DBCB72CB1E1322DF00F4B6F0 /* USConstitution.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

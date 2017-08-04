@@ -40,7 +40,10 @@ class SelectLevelViewController: UIViewController {
         
         let statusBarHeight = Int(UIApplication.shared.statusBarFrame.height)
         let displayName = appDelegate.displayName!
-        let userLevel = appDelegate.userLevel!
+        var userLevel = "New"
+        if let newUserLevel = appDelegate.userLevel {
+            userLevel = newUserLevel
+        }
         
         let pad = 10
         let offset = 200

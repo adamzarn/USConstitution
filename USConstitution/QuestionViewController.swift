@@ -111,6 +111,8 @@ class QuestionViewController: UIViewController {
             button.layer.borderWidth = 1
             button.layer.cornerRadius = 5
             button.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.minimumScaleFactor = 0.25
             self.view.addSubview(button)
             i += 1
         }
@@ -267,7 +269,7 @@ class QuestionViewController: UIViewController {
         
         if quizzes != nil {
             
-            randomlySelectQuestions(number: 10)
+            randomlySelectQuestions(number: 20)
             loadingLabel.isHidden = true
             startQuizButton.isHidden = false
             startQuizButton.isEnabled = true
@@ -277,37 +279,61 @@ class QuestionViewController: UIViewController {
         } else {
             
             aiv.startAnimating()
-            FirebaseClient.sharedInstance.getQuestions(level: level, completion: { (quizzes, error) -> () in
-                if let quizzes = quizzes {
-                    self.quizzes = quizzes
-                    if self.level == "CitizenQuestions" {
-                        self.appDelegate.CitizenQuestions = quizzes
-                    } else if self.level == "PatriotQuestions" {
-                        self.appDelegate.PatriotQuestions = quizzes
+            loadingLabel.isHidden = false
+            
+            if GlobalFunctions.shared.hasConnectivity() {
+            
+                FirebaseClient.sharedInstance.getQuestions(level: level, completion: { (quizzes, error) -> () in
+                    if let quizzes = quizzes {
+                        self.quizzes = quizzes
+                        if self.level == "CitizenQuestions" {
+                            self.appDelegate.CitizenQuestions = quizzes
+                        } else if self.level == "PatriotQuestions" {
+                            self.appDelegate.PatriotQuestions = quizzes
+                        } else {
+                            self.appDelegate.FoundingFatherQuestions = quizzes
+                        }
+                        
+                        //Now that all questions are saved, randomly select certain amount
+                        self.randomlySelectQuestions(number: 20)
+                        
+                        self.aiv.stopAnimating()
+                        self.aiv.isHidden = true
+                        self.loadingLabel.isHidden = true
+                        self.startQuizButton.isHidden = false
+                        self.startQuizButton.isEnabled = true
+                        self.totalQuestionsRemainingLabel.text = String(self.quizzes.count)
+                        self.maxScore = 20.0 * Double(self.quizzes.count)
                     } else {
-                        self.appDelegate.FoundingFatherQuestions = quizzes
+                        print(error!)
                     }
-                    
-                    //Now that all questions are saved, randomly select certain amount
-                    self.randomlySelectQuestions(number: 10)
-                    
-                    self.aiv.stopAnimating()
-                    self.aiv.isHidden = true
-                    self.loadingLabel.isHidden = true
-                    self.startQuizButton.isHidden = false
-                    self.startQuizButton.isEnabled = true
-                    self.totalQuestionsRemainingLabel.text = String(self.quizzes.count)
-                    self.maxScore = 20.0 * Double(self.quizzes.count)
-                } else {
-                    print(error!)
-                }
-            })
+                })
+                
+            }
+        
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
         usedQuizzes = []
         
+        if !GlobalFunctions.shared.hasConnectivity() {
+        
+            self.aiv.stopAnimating()
+            self.aiv.isHidden = true
+            self.loadingLabel.isHidden = true
+            let alert = UIAlertController(title: "No Internet Connectivity", message: "Unable to retrieve questions. Establish an Internet Connection and try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                let slvc = self.storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
+                self.present(slvc, animated: false, completion: nil)
+            })
+            self.present(alert, animated: false, completion: nil)
+            
+        }
+        
     }
-    
+
     func randomlySelectQuestions(number: Int) {
         var i = 0
         while quizzes.count > number {
@@ -358,6 +384,8 @@ class QuestionViewController: UIViewController {
                         answerButton4.setTitle("", for: .normal)
                         answerButton4.isHidden = true
                     }
+                    print(quiz)
+                    print(usedQuizzes)
 
                     usedQuizzes.append(quiz)
                     quizzes.remove(at: i)
@@ -379,15 +407,31 @@ class QuestionViewController: UIViewController {
             
             let result = Result(score: score, correctAnswers: totalCorrectAnswersLabel.text!, incorrectAnswers: totalIncorrectAnswersLabel.text!, timestamp: getCurrentDateAndTime(), displayName: appDelegate.displayName)
             
-            FirebaseClient.sharedInstance.postResult(uid: self.appDelegate.uid, result: result, level: self.appDelegate.level, userLevel: self.appDelegate.userLevel, score: score, maxScore: maxScore, completion: { (message, error) -> () in
-                if let message = message {
-                    self.saveAiv.isHidden = true
-                    self.saveAiv.stopAnimating()
-                    self.setUpResultsScreen(message: message)
-                } else {
-                    print("failure")
-                }
-            })
+            if GlobalFunctions.shared.hasConnectivity() {
+            
+                FirebaseClient.sharedInstance.postResult(uid: self.appDelegate.uid, result: result, level: self.appDelegate.level, userLevel: self.appDelegate.userLevel, score: score, maxScore: maxScore, completion: { (message, error) -> () in
+                    if let message = message {
+                        self.saveAiv.isHidden = true
+                        self.saveAiv.stopAnimating()
+                        self.setUpResultsScreen(message: message)
+                    } else {
+                        print("failure")
+                    }
+                })
+            
+            } else {
+    
+                saveAiv.stopAnimating()
+                saveAiv.isHidden = true
+                
+                let alert = UIAlertController(title: "No Internet Connectivity", message: "Unable to post your score. Establish an Internet Connection and try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+                    self.startQuizButton.isEnabled = true
+                    self.startQuizButton.backgroundColor = self.startQuizButton.backgroundColor?.withAlphaComponent(0.7)
+                })
+                self.present(alert, animated: false, completion: nil)
+                
+            }
         
         }
     }

@@ -82,8 +82,23 @@ class FirebaseClient: NSObject {
         
         let userLevelRef = self.ref.child("Users/\(uid)/level")
         
+        var scoreNeeded = 0.7*maxScore
+        switch level {
+            case "patriot":
+                scoreNeeded = 0.8*maxScore
+            case "foundingFather":
+                scoreNeeded = 0.85*maxScore
+            default:
+                scoreNeeded = 0.7*maxScore
+        }
+        print(scoreNeeded)
+        
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        let stringScoreNeeded = formatter.string(from: NSNumber(value: scoreNeeded))!
+        
         var message: String!
-        if score >= 0.8*maxScore {
+        if score >= scoreNeeded {
             if userLevel == "New" && level == "citizen" {
                 message = "You are now a Citizen! \n The Patriot Quiz has been unlocked!"
                 userLevelRef.setValue("Citizen")
@@ -100,9 +115,33 @@ class FirebaseClient: NSObject {
                 message = "Great job!"
             }
         } else {
-            if userLevel == "New" || userLevel == "Citizen" {
-                message = "Better luck next time. \n You need \(0.8*maxScore) points to unlock the next quiz."
-            } else {
+            
+            var levelAttempted = 1
+            var levelAchieved = 0
+            
+            switch level {
+                case "patriot":
+                    levelAttempted = 2
+                case "foundingFather":
+                    levelAttempted = 3
+                default:
+                    levelAttempted = 1
+            }
+            
+            switch userLevel {
+                case "Citizen":
+                    levelAchieved = 1
+                case "Patriot":
+                    levelAchieved = 2
+                case "Founding Father":
+                    levelAchieved = 3
+                default:
+                    levelAchieved = 0
+            }
+            
+            if levelAchieved < levelAttempted {
+                message = "Better luck next time. \n You need \(stringScoreNeeded) points to unlock the next quiz."
+            } else if levelAchieved >= levelAttempted {
                 message = "Not your best showing. \n Keep working at it though!"
             }
         }
