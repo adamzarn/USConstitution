@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DBCB72BE1E1322DE00F4B6F0"
-               BuildableName = "USConstitution.app"
-               BlueprintName = "USConstitution"
-               ReferencedContainer = "container:USConstitution.xcodeproj">
+               BuildableName = "Constitution Quizzer.app"
+               BlueprintName = "Constitution Quizzer"
+               ReferencedContainer = "container:Constitution Quizzer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DBCB72D51E1322DF00F4B6F0"
-               BuildableName = "USConstitutionTests.xctest"
-               BlueprintName = "USConstitutionTests"
-               ReferencedContainer = "container:USConstitution.xcodeproj">
+               BuildableName = "Constitution QuizzerTests.xctest"
+               BlueprintName = "Constitution QuizzerTests"
+               ReferencedContainer = "container:Constitution Quizzer.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DBCB72E01E1322DF00F4B6F0"
-               BuildableName = "USConstitutionUITests.xctest"
-               BlueprintName = "USConstitutionUITests"
-               ReferencedContainer = "container:USConstitution.xcodeproj">
+               BuildableName = "Constitution QuizzerUITests.xctest"
+               BlueprintName = "Constitution QuizzerUITests"
+               ReferencedContainer = "container:Constitution Quizzer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DBCB72BE1E1322DE00F4B6F0"
-            BuildableName = "USConstitution.app"
-            BlueprintName = "USConstitution"
-            ReferencedContainer = "container:USConstitution.xcodeproj">
+            BuildableName = "Constitution Quizzer.app"
+            BlueprintName = "Constitution Quizzer"
+            ReferencedContainer = "container:Constitution Quizzer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DBCB72BE1E1322DE00F4B6F0"
-            BuildableName = "USConstitution.app"
-            BlueprintName = "USConstitution"
-            ReferencedContainer = "container:USConstitution.xcodeproj">
+            BuildableName = "Constitution Quizzer.app"
+            BlueprintName = "Constitution Quizzer"
+            ReferencedContainer = "container:Constitution Quizzer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DBCB72BE1E1322DE00F4B6F0"
-            BuildableName = "USConstitution.app"
-            BlueprintName = "USConstitution"
-            ReferencedContainer = "container:USConstitution.xcodeproj">
+            BuildableName = "Constitution Quizzer.app"
+            BlueprintName = "Constitution Quizzer"
+            ReferencedContainer = "container:Constitution Quizzer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>USConstitution.xcscheme</key>
+		<key>Constitution Quizzer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,6 +12,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>DBA7D2E21F34F719003F473C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DBA7D2F01F34F733003F473C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DBCB72BE1E1322DE00F4B6F0</key>
 		<dict>
 			<key>primary</key>

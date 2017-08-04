@@ -1,15 +1,14 @@
 //
-//  USConstitutionTests.swift
-//  USConstitutionTests
+//  Constitution_QuizzerTests.swift
+//  Constitution QuizzerTests
 //
-//  Created by Adam Zarn on 12/27/16.
-//  Copyright © 2016 Adam Zarn. All rights reserved.
+//  Created by Adam Zarn on 8/4/17.
+//  Copyright © 2017 Adam Zarn. All rights reserved.
 //
 
 import XCTest
-@testable import USConstitution
 
-class USConstitutionTests: XCTestCase {
+class Constitution_QuizzerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

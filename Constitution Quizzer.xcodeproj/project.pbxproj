@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		35185FCCF52FF51F4DCA0B2D /* Pods_USConstitutionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5064867BDA4275916EB8F5FA /* Pods_USConstitutionUITests.framework */; };
-		36B85E2DE1FE4FB7046399E9 /* Pods_USConstitutionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D3315838811826E403D9C5 /* Pods_USConstitutionTests.framework */; };
 		4328D3A05E7BDBF686FC21FB /* Pods_USConstitution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCEBA4530F0D9B3D7DDDE87 /* Pods_USConstitution.framework */; };
 		DB2C95FD1F33CE3F00FBDB99 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */; };
 		DB2C95FF1F33CE8500FBDB99 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */; };
@@ -16,35 +14,33 @@
 		DB63F89D1E1A0F3A00FB8699 /* ScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */; };
 		DBA304531E1867300023D678 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA304521E1867300023D678 /* LoginViewController.swift */; };
 		DBA304551E18748E0023D678 /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA304541E18748E0023D678 /* CreateProfileViewController.swift */; };
+		DBA7D2E61F34F719003F473C /* Constitution_QuizzerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA7D2E51F34F719003F473C /* Constitution_QuizzerUITests.swift */; };
+		DBA7D2F41F34F733003F473C /* Constitution_QuizzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA7D2F31F34F733003F473C /* Constitution_QuizzerTests.swift */; };
 		DBAEB64A1E133C6300F9A540 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAEB6491E133C6300F9A540 /* QuestionViewController.swift */; };
 		DBAEB64C1E135AF900F9A540 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAEB64B1E135AF900F9A540 /* FirebaseClient.swift */; };
 		DBAEB64E1E135BC000F9A540 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAEB64D1E135BC000F9A540 /* Quiz.swift */; };
-		DBCB2E581E1B3E8900C3911C /* USDeclaration.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBCB2E571E1B397C00C3911C /* USDeclaration.ttf */; };
 		DBCB72C31E1322DF00F4B6F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB72C21E1322DF00F4B6F0 /* AppDelegate.swift */; };
 		DBCB72C51E1322DF00F4B6F0 /* SelectLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB72C41E1322DF00F4B6F0 /* SelectLevelViewController.swift */; };
 		DBCB72C81E1322DF00F4B6F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72C61E1322DF00F4B6F0 /* Main.storyboard */; };
-		DBCB72CB1E1322DF00F4B6F0 /* USConstitution.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DBCB72C91E1322DF00F4B6F0 /* USConstitution.xcdatamodeld */; };
 		DBCB72CD1E1322DF00F4B6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72CC1E1322DF00F4B6F0 /* Assets.xcassets */; };
 		DBCB72D01E1322DF00F4B6F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72CE1E1322DF00F4B6F0 /* LaunchScreen.storyboard */; };
-		DBCB72DB1E1322DF00F4B6F0 /* USConstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB72DA1E1322DF00F4B6F0 /* USConstitutionTests.swift */; };
-		DBCB72E61E1322DF00F4B6F0 /* USConstitutionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB72E51E1322DF00F4B6F0 /* USConstitutionUITests.swift */; };
 		DBCB72F61E1323D800F4B6F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DBCB72D71E1322DF00F4B6F0 /* PBXContainerItemProxy */ = {
+		DBA7D2E81F34F719003F473C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DBCB72B71E1322DE00F4B6F0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DBCB72BE1E1322DE00F4B6F0;
-			remoteInfo = USConstitution;
+			remoteInfo = "Constitution Quizzer";
 		};
-		DBCB72E21E1322DF00F4B6F0 /* PBXContainerItemProxy */ = {
+		DBA7D2F61F34F733003F473C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DBCB72B71E1322DE00F4B6F0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DBCB72BE1E1322DE00F4B6F0;
-			remoteInfo = USConstitution;
+			remoteInfo = "Constitution Quizzer";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,50 +60,45 @@
 		DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoresViewController.swift; sourceTree = "<group>"; };
 		DBA304521E1867300023D678 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DBA304541E18748E0023D678 /* CreateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		DBA7D2E31F34F719003F473C /* Constitution QuizzerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Constitution QuizzerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBA7D2E51F34F719003F473C /* Constitution_QuizzerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constitution_QuizzerUITests.swift; sourceTree = "<group>"; };
+		DBA7D2E71F34F719003F473C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBA7D2F11F34F733003F473C /* Constitution QuizzerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Constitution QuizzerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBA7D2F31F34F733003F473C /* Constitution_QuizzerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constitution_QuizzerTests.swift; sourceTree = "<group>"; };
+		DBA7D2F51F34F733003F473C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBAEB6491E133C6300F9A540 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		DBAEB64B1E135AF900F9A540 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		DBAEB64D1E135BC000F9A540 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
-		DBAEB64F1E13647700F9A540 /* USConstitution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = USConstitution.entitlements; sourceTree = "<group>"; };
-		DBCB2E571E1B397C00C3911C /* USDeclaration.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = USDeclaration.ttf; sourceTree = "<group>"; };
-		DBCB72BF1E1322DF00F4B6F0 /* USConstitution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USConstitution.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBCB72BF1E1322DF00F4B6F0 /* Constitution Quizzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Constitution Quizzer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCB72C21E1322DF00F4B6F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBCB72C41E1322DF00F4B6F0 /* SelectLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLevelViewController.swift; sourceTree = "<group>"; };
 		DBCB72C71E1322DF00F4B6F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DBCB72CA1E1322DF00F4B6F0 /* USConstitution.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = USConstitution.xcdatamodel; sourceTree = "<group>"; };
 		DBCB72CC1E1322DF00F4B6F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBCB72CF1E1322DF00F4B6F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBCB72D11E1322DF00F4B6F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBCB72D61E1322DF00F4B6F0 /* USConstitutionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USConstitutionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBCB72DA1E1322DF00F4B6F0 /* USConstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USConstitutionTests.swift; sourceTree = "<group>"; };
-		DBCB72DC1E1322DF00F4B6F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBCB72E11E1322DF00F4B6F0 /* USConstitutionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USConstitutionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBCB72E51E1322DF00F4B6F0 /* USConstitutionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USConstitutionUITests.swift; sourceTree = "<group>"; };
-		DBCB72E71E1322DF00F4B6F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DBA7D2E01F34F719003F473C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBA7D2EE1F34F733003F473C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBCB72BC1E1322DE00F4B6F0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4328D3A05E7BDBF686FC21FB /* Pods_USConstitution.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBCB72D31E1322DF00F4B6F0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36B85E2DE1FE4FB7046399E9 /* Pods_USConstitutionTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBCB72DE1E1322DF00F4B6F0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				35185FCCF52FF51F4DCA0B2D /* Pods_USConstitutionUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,12 +118,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DBA7D2E41F34F719003F473C /* Constitution QuizzerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DBA7D2E51F34F719003F473C /* Constitution_QuizzerUITests.swift */,
+				DBA7D2E71F34F719003F473C /* Info.plist */,
+			);
+			path = "Constitution QuizzerUITests";
+			sourceTree = "<group>";
+		};
+		DBA7D2F21F34F733003F473C /* Constitution QuizzerTests */ = {
+			isa = PBXGroup;
+			children = (
+				DBA7D2F31F34F733003F473C /* Constitution_QuizzerTests.swift */,
+				DBA7D2F51F34F733003F473C /* Info.plist */,
+			);
+			path = "Constitution QuizzerTests";
+			sourceTree = "<group>";
+		};
 		DBCB72B61E1322DE00F4B6F0 = {
 			isa = PBXGroup;
 			children = (
-				DBCB72C11E1322DF00F4B6F0 /* USConstitution */,
-				DBCB72D91E1322DF00F4B6F0 /* USConstitutionTests */,
-				DBCB72E41E1322DF00F4B6F0 /* USConstitutionUITests */,
+				DBCB72C11E1322DF00F4B6F0 /* Constitution Quizzer */,
+				DBA7D2E41F34F719003F473C /* Constitution QuizzerUITests */,
+				DBA7D2F21F34F733003F473C /* Constitution QuizzerTests */,
 				DBCB72C01E1322DF00F4B6F0 /* Products */,
 				AD02F04299CB36D0ADC408FC /* Pods */,
 				E2C40A1818E6BAF1928F9ADD /* Frameworks */,
@@ -142,17 +151,16 @@
 		DBCB72C01E1322DF00F4B6F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DBCB72BF1E1322DF00F4B6F0 /* USConstitution.app */,
-				DBCB72D61E1322DF00F4B6F0 /* USConstitutionTests.xctest */,
-				DBCB72E11E1322DF00F4B6F0 /* USConstitutionUITests.xctest */,
+				DBCB72BF1E1322DF00F4B6F0 /* Constitution Quizzer.app */,
+				DBA7D2E31F34F719003F473C /* Constitution QuizzerUITests.xctest */,
+				DBA7D2F11F34F733003F473C /* Constitution QuizzerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DBCB72C11E1322DF00F4B6F0 /* USConstitution */ = {
+		DBCB72C11E1322DF00F4B6F0 /* Constitution Quizzer */ = {
 			isa = PBXGroup;
 			children = (
-				DBAEB64F1E13647700F9A540 /* USConstitution.entitlements */,
 				DBCB72C21E1322DF00F4B6F0 /* AppDelegate.swift */,
 				DBAEB64D1E135BC000F9A540 /* Quiz.swift */,
 				DBAEB64B1E135AF900F9A540 /* FirebaseClient.swift */,
@@ -163,34 +171,14 @@
 				DB63F89C1E1A0F3A00FB8699 /* ScoresViewController.swift */,
 				DBCB72C61E1322DF00F4B6F0 /* Main.storyboard */,
 				DBCB72CC1E1322DF00F4B6F0 /* Assets.xcassets */,
-				DBCB2E571E1B397C00C3911C /* USDeclaration.ttf */,
 				DB37D92B1E66120800CFC2AC /* Canterbury.ttf */,
 				DBCB72CE1E1322DF00F4B6F0 /* LaunchScreen.storyboard */,
 				DBCB72D11E1322DF00F4B6F0 /* Info.plist */,
 				DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */,
-				DBCB72C91E1322DF00F4B6F0 /* USConstitution.xcdatamodeld */,
 				DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */,
 				DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */,
 			);
-			path = USConstitution;
-			sourceTree = "<group>";
-		};
-		DBCB72D91E1322DF00F4B6F0 /* USConstitutionTests */ = {
-			isa = PBXGroup;
-			children = (
-				DBCB72DA1E1322DF00F4B6F0 /* USConstitutionTests.swift */,
-				DBCB72DC1E1322DF00F4B6F0 /* Info.plist */,
-			);
-			path = USConstitutionTests;
-			sourceTree = "<group>";
-		};
-		DBCB72E41E1322DF00F4B6F0 /* USConstitutionUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DBCB72E51E1322DF00F4B6F0 /* USConstitutionUITests.swift */,
-				DBCB72E71E1322DF00F4B6F0 /* Info.plist */,
-			);
-			path = USConstitutionUITests;
+			path = "Constitution Quizzer";
 			sourceTree = "<group>";
 		};
 		E2C40A1818E6BAF1928F9ADD /* Frameworks */ = {
@@ -206,9 +194,45 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DBCB72BE1E1322DE00F4B6F0 /* USConstitution */ = {
+		DBA7D2E21F34F719003F473C /* Constitution QuizzerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBCB72EA1E1322DF00F4B6F0 /* Build configuration list for PBXNativeTarget "USConstitution" */;
+			buildConfigurationList = DBA7D2EA1F34F719003F473C /* Build configuration list for PBXNativeTarget "Constitution QuizzerUITests" */;
+			buildPhases = (
+				DBA7D2DF1F34F719003F473C /* Sources */,
+				DBA7D2E01F34F719003F473C /* Frameworks */,
+				DBA7D2E11F34F719003F473C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBA7D2E91F34F719003F473C /* PBXTargetDependency */,
+			);
+			name = "Constitution QuizzerUITests";
+			productName = "Constitution QuizzerUITests";
+			productReference = DBA7D2E31F34F719003F473C /* Constitution QuizzerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		DBA7D2F01F34F733003F473C /* Constitution QuizzerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBA7D2F81F34F733003F473C /* Build configuration list for PBXNativeTarget "Constitution QuizzerTests" */;
+			buildPhases = (
+				DBA7D2ED1F34F733003F473C /* Sources */,
+				DBA7D2EE1F34F733003F473C /* Frameworks */,
+				DBA7D2EF1F34F733003F473C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBA7D2F71F34F733003F473C /* PBXTargetDependency */,
+			);
+			name = "Constitution QuizzerTests";
+			productName = "Constitution QuizzerTests";
+			productReference = DBA7D2F11F34F733003F473C /* Constitution QuizzerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DBCB72BE1E1322DE00F4B6F0 /* Constitution Quizzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBCB72EA1E1322DF00F4B6F0 /* Build configuration list for PBXNativeTarget "Constitution Quizzer" */;
 			buildPhases = (
 				93648159FC27875A5F940936 /* [CP] Check Pods Manifest.lock */,
 				DBCB72BB1E1322DE00F4B6F0 /* Sources */,
@@ -221,51 +245,10 @@
 			);
 			dependencies = (
 			);
-			name = USConstitution;
+			name = "Constitution Quizzer";
 			productName = USConstitution;
-			productReference = DBCB72BF1E1322DF00F4B6F0 /* USConstitution.app */;
+			productReference = DBCB72BF1E1322DF00F4B6F0 /* Constitution Quizzer.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DBCB72D51E1322DF00F4B6F0 /* USConstitutionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DBCB72ED1E1322E000F4B6F0 /* Build configuration list for PBXNativeTarget "USConstitutionTests" */;
-			buildPhases = (
-				C5ECEC83EEDFB086D22707E9 /* [CP] Check Pods Manifest.lock */,
-				DBCB72D21E1322DF00F4B6F0 /* Sources */,
-				DBCB72D31E1322DF00F4B6F0 /* Frameworks */,
-				DBCB72D41E1322DF00F4B6F0 /* Resources */,
-				074DC2509E25B110F7EE64AB /* [CP] Embed Pods Frameworks */,
-				2ABB7C586EC50B70904B27D3 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DBCB72D81E1322DF00F4B6F0 /* PBXTargetDependency */,
-			);
-			name = USConstitutionTests;
-			productName = USConstitutionTests;
-			productReference = DBCB72D61E1322DF00F4B6F0 /* USConstitutionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		DBCB72E01E1322DF00F4B6F0 /* USConstitutionUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DBCB72F01E1322E000F4B6F0 /* Build configuration list for PBXNativeTarget "USConstitutionUITests" */;
-			buildPhases = (
-				39749605FF31130E8F464B9F /* [CP] Check Pods Manifest.lock */,
-				DBCB72DD1E1322DF00F4B6F0 /* Sources */,
-				DBCB72DE1E1322DF00F4B6F0 /* Frameworks */,
-				DBCB72DF1E1322DF00F4B6F0 /* Resources */,
-				72103C7D1557370AC249AF7F /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DBCB72E31E1322DF00F4B6F0 /* PBXTargetDependency */,
-			);
-			name = USConstitutionUITests;
-			productName = USConstitutionUITests;
-			productReference = DBCB72E11E1322DF00F4B6F0 /* USConstitutionUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -273,10 +256,22 @@
 		DBCB72B71E1322DE00F4B6F0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Adam Zarn";
 				TargetAttributes = {
+					DBA7D2E21F34F719003F473C = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = QA67695N79;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DBCB72BE1E1322DE00F4B6F0;
+					};
+					DBA7D2F01F34F733003F473C = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = QA67695N79;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DBCB72BE1E1322DE00F4B6F0;
+					};
 					DBCB72BE1E1322DE00F4B6F0 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = QA67695N79;
@@ -287,19 +282,9 @@
 							};
 						};
 					};
-					DBCB72D51E1322DF00F4B6F0 = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = DBCB72BE1E1322DE00F4B6F0;
-					};
-					DBCB72E01E1322DF00F4B6F0 = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = DBCB72BE1E1322DE00F4B6F0;
-					};
 				};
 			};
-			buildConfigurationList = DBCB72BA1E1322DE00F4B6F0 /* Build configuration list for PBXProject "USConstitution" */;
+			buildConfigurationList = DBCB72BA1E1322DE00F4B6F0 /* Build configuration list for PBXProject "Constitution Quizzer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -312,20 +297,33 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DBCB72BE1E1322DE00F4B6F0 /* USConstitution */,
-				DBCB72D51E1322DF00F4B6F0 /* USConstitutionTests */,
-				DBCB72E01E1322DF00F4B6F0 /* USConstitutionUITests */,
+				DBCB72BE1E1322DE00F4B6F0 /* Constitution Quizzer */,
+				DBA7D2E21F34F719003F473C /* Constitution QuizzerUITests */,
+				DBA7D2F01F34F733003F473C /* Constitution QuizzerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DBA7D2E11F34F719003F473C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBA7D2EF1F34F733003F473C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBCB72BD1E1322DE00F4B6F0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DB37D92C1E6612CB00CFC2AC /* Canterbury.ttf in Resources */,
-				DBCB2E581E1B3E8900C3911C /* USDeclaration.ttf in Resources */,
 				DBCB72F61E1323D800F4B6F0 /* GoogleService-Info.plist in Resources */,
 				DBCB72D01E1322DF00F4B6F0 /* LaunchScreen.storyboard in Resources */,
 				DBCB72CD1E1322DF00F4B6F0 /* Assets.xcassets in Resources */,
@@ -333,68 +331,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBCB72D41E1322DF00F4B6F0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBCB72DF1E1322DF00F4B6F0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		074DC2509E25B110F7EE64AB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-USConstitutionTests/Pods-USConstitutionTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2ABB7C586EC50B70904B27D3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-USConstitutionTests/Pods-USConstitutionTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39749605FF31130E8F464B9F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		5C11ACFDFAF765A665217543 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -408,21 +347,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		72103C7D1557370AC249AF7F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-USConstitutionUITests/Pods-USConstitutionUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		93648159FC27875A5F940936 /* [CP] Check Pods Manifest.lock */ = {
@@ -455,24 +379,25 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-USConstitution/Pods-USConstitution-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C5ECEC83EEDFB086D22707E9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DBA7D2DF1F34F719003F473C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBA7D2E61F34F719003F473C /* Constitution_QuizzerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBA7D2ED1F34F733003F473C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBA7D2F41F34F733003F473C /* Constitution_QuizzerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBCB72BB1E1322DE00F4B6F0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,38 +412,21 @@
 				DBAEB64E1E135BC000F9A540 /* Quiz.swift in Sources */,
 				DBAEB64A1E133C6300F9A540 /* QuestionViewController.swift in Sources */,
 				DB2C95FD1F33CE3F00FBDB99 /* Reachability.swift in Sources */,
-				DBCB72CB1E1322DF00F4B6F0 /* USConstitution.xcdatamodeld in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBCB72D21E1322DF00F4B6F0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DBCB72DB1E1322DF00F4B6F0 /* USConstitutionTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DBCB72DD1E1322DF00F4B6F0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DBCB72E61E1322DF00F4B6F0 /* USConstitutionUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DBCB72D81E1322DF00F4B6F0 /* PBXTargetDependency */ = {
+		DBA7D2E91F34F719003F473C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DBCB72BE1E1322DE00F4B6F0 /* USConstitution */;
-			targetProxy = DBCB72D71E1322DF00F4B6F0 /* PBXContainerItemProxy */;
+			target = DBCB72BE1E1322DE00F4B6F0 /* Constitution Quizzer */;
+			targetProxy = DBA7D2E81F34F719003F473C /* PBXContainerItemProxy */;
 		};
-		DBCB72E31E1322DF00F4B6F0 /* PBXTargetDependency */ = {
+		DBA7D2F71F34F733003F473C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DBCB72BE1E1322DE00F4B6F0 /* USConstitution */;
-			targetProxy = DBCB72E21E1322DF00F4B6F0 /* PBXContainerItemProxy */;
+			target = DBCB72BE1E1322DE00F4B6F0 /* Constitution Quizzer */;
+			targetProxy = DBA7D2F61F34F733003F473C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -542,6 +450,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DBA7D2EB1F34F719003F473C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = QA67695N79;
+				INFOPLIST_FILE = "Constitution QuizzerUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AJZ.Constitution-QuizzerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Constitution Quizzer";
+			};
+			name = Debug;
+		};
+		DBA7D2EC1F34F719003F473C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = QA67695N79;
+				INFOPLIST_FILE = "Constitution QuizzerUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AJZ.Constitution-QuizzerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Constitution Quizzer";
+			};
+			name = Release;
+		};
+		DBA7D2F91F34F733003F473C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = QA67695N79;
+				INFOPLIST_FILE = "Constitution QuizzerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AJZ.Constitution-QuizzerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Constitution Quizzer.app/Constitution Quizzer";
+			};
+			name = Debug;
+		};
+		DBA7D2FA1F34F733003F473C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = QA67695N79;
+				INFOPLIST_FILE = "Constitution QuizzerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AJZ.Constitution-QuizzerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Constitution Quizzer.app/Constitution Quizzer";
+			};
+			name = Release;
+		};
 		DBCB72E81E1322DF00F4B6F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -638,15 +612,15 @@
 			baseConfigurationReference = 33B1C970A78C884E9033AE84 /* Pods-USConstitution.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = USConstitution/USConstitution.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Constitution Quizzer/USConstitution.entitlements";
 				DEVELOPMENT_TEAM = QA67695N79;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = USConstitution/Info.plist;
+				INFOPLIST_FILE = "Constitution Quizzer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitution;
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.ConstitutionQuizzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -655,80 +629,38 @@
 			baseConfigurationReference = 658FCCB0B300992799E865A0 /* Pods-USConstitution.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = USConstitution/USConstitution.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Constitution Quizzer/USConstitution.entitlements";
 				DEVELOPMENT_TEAM = QA67695N79;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = USConstitution/Info.plist;
+				INFOPLIST_FILE = "Constitution Quizzer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitution;
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.ConstitutionQuizzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		DBCB72EE1E1322E000F4B6F0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05391C2D2FBCB93A61720E22 /* Pods-USConstitutionTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = USConstitutionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitutionTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USConstitution.app/USConstitution";
-			};
-			name = Debug;
-		};
-		DBCB72EF1E1322E000F4B6F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DCC1557A109BB325CBAE18E /* Pods-USConstitutionTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = USConstitutionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitutionTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USConstitution.app/USConstitution";
-			};
-			name = Release;
-		};
-		DBCB72F11E1322E000F4B6F0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B126FEDA5D89BF50147BC5D7 /* Pods-USConstitutionUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = USConstitutionUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitutionUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = USConstitution;
-			};
-			name = Debug;
-		};
-		DBCB72F21E1322E000F4B6F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD858BAE88E645CE131C267B /* Pods-USConstitutionUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = USConstitutionUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AJZ.USConstitutionUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = USConstitution;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DBCB72BA1E1322DE00F4B6F0 /* Build configuration list for PBXProject "USConstitution" */ = {
+		DBA7D2EA1F34F719003F473C /* Build configuration list for PBXNativeTarget "Constitution QuizzerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBA7D2EB1F34F719003F473C /* Debug */,
+				DBA7D2EC1F34F719003F473C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DBA7D2F81F34F733003F473C /* Build configuration list for PBXNativeTarget "Constitution QuizzerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBA7D2F91F34F733003F473C /* Debug */,
+				DBA7D2FA1F34F733003F473C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DBCB72BA1E1322DE00F4B6F0 /* Build configuration list for PBXProject "Constitution Quizzer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBCB72E81E1322DF00F4B6F0 /* Debug */,
@@ -737,7 +669,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBCB72EA1E1322DF00F4B6F0 /* Build configuration list for PBXNativeTarget "USConstitution" */ = {
+		DBCB72EA1E1322DF00F4B6F0 /* Build configuration list for PBXNativeTarget "Constitution Quizzer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBCB72EB1E1322DF00F4B6F0 /* Debug */,
@@ -746,38 +678,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBCB72ED1E1322E000F4B6F0 /* Build configuration list for PBXNativeTarget "USConstitutionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DBCB72EE1E1322E000F4B6F0 /* Debug */,
-				DBCB72EF1E1322E000F4B6F0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DBCB72F01E1322E000F4B6F0 /* Build configuration list for PBXNativeTarget "USConstitutionUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DBCB72F11E1322E000F4B6F0 /* Debug */,
-				DBCB72F21E1322E000F4B6F0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DBCB72C91E1322DF00F4B6F0 /* USConstitution.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DBCB72CA1E1322DF00F4B6F0 /* USConstitution.xcdatamodel */,
-			);
-			currentVersion = DBCB72CA1E1322DF00F4B6F0 /* USConstitution.xcdatamodel */;
-			path = USConstitution.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DBCB72B71E1322DE00F4B6F0 /* Project object */;
 }
