@@ -152,9 +152,7 @@ class CreateProfileViewController: UIViewController, UITextFieldDelegate {
                     self.appDelegate.userLevel = "New"
                     self.signedIn(user: user)
                     FirebaseClient.sharedInstance.addNewUser(uid: newUser.uid, displayName: self.displayNameTextField.text!, email: self.emailTextField.text!, level: "New")
-                    print("\(newUser.email!) is signed in")
                 } else {
-                    print("profile creation unsuccessful")
                     self.aiv.isHidden = true
                     self.aiv.stopAnimating()
                     let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)

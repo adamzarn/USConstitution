@@ -339,8 +339,6 @@ class QuestionViewController: UIViewController {
         while quizzes.count > number {
             let numberOfQuestionsRemaining = quizzes.count
             let randomNumber = arc4random_uniform(UInt32(numberOfQuestionsRemaining))
-            print(randomNumber)
-            print(quizzes.count)
             quizzes.remove(at: Int(randomNumber))
             i = i + 1
         }
@@ -384,8 +382,6 @@ class QuestionViewController: UIViewController {
                         answerButton4.setTitle("", for: .normal)
                         answerButton4.isHidden = true
                     }
-                    print(quiz)
-                    print(usedQuizzes)
 
                     usedQuizzes.append(quiz)
                     quizzes.remove(at: i)

@@ -54,10 +54,8 @@ class FirebaseClient: NSObject {
         let displayNameRef = self.ref.child("DisplayNames")
         displayNameRef.queryOrderedByValue().queryEqual(toValue: "\(newDisplayName)").observeSingleEvent(of: .value, with: { snapshot in
             if (snapshot.value is NSNull ) {
-                print("not found")
                 completion(false, nil)
             } else {
-                print("found")
                 completion(true, nil)
             }
         })
@@ -73,7 +71,6 @@ class FirebaseClient: NSObject {
                 let user = User(displayName: displayName, email: email, level: level)
                 completion(user, nil)
             } else {
-                print("Snapshot doesn't exist")
                 completion(nil, "No Display Name Exists")
             }
         })
@@ -92,7 +89,6 @@ class FirebaseClient: NSObject {
             default:
                 scoreNeeded = 0.7*maxScore
         }
-        print(scoreNeeded)
         
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
@@ -149,7 +145,7 @@ class FirebaseClient: NSObject {
         
         self.ref.child("Users/\(uid)/\(level)Results").observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
-                self.updateDatabase(score: score, result: result, scoresAllowed: 100, data: snapshot.value as! NSDictionary, path: "Users/\(uid)/\(level)Results")
+                self.updateDatabase(score: score, result: result, scoresAllowed: 20, data: snapshot.value as! NSDictionary, path: "Users/\(uid)/\(level)Results", type: "MyScores")
             } else {
                 let userScoreRef = self.ref.child("Users/\(uid)/\(level)Results").childByAutoId()
                 userScoreRef.setValue(result.toAnyObject())
@@ -158,7 +154,7 @@ class FirebaseClient: NSObject {
         
         self.ref.child("TopScores/\(level)").observeSingleEvent(of: .value, with: { snapshot in
             if snapshot.exists() {
-                self.updateDatabase(score: score, result: result, scoresAllowed: 100, data: snapshot.value as! NSDictionary, path: "TopScores/\(level)")
+                self.updateDatabase(score: score, result: result, scoresAllowed: 20, data: snapshot.value as! NSDictionary, path: "TopScores/\(level)", type: "TopScores")
                 completion(message, nil)
             } else {
                 let topScoreRef = self.ref.child("TopScores/\(level)").childByAutoId()
@@ -169,17 +165,29 @@ class FirebaseClient: NSObject {
         
     }
     
-    func updateDatabase(score: Double, result: Result, scoresAllowed: Int, data: NSDictionary, path: String) {
+    func updateDatabase(score: Double, result: Result, scoresAllowed: Int, data: NSDictionary, path: String, type: String) {
         var min = 10000.0
+
         var potentialKeyToRemove = ""
         for (key, value) in data {
             let value = value as! NSDictionary
-            let score = value["score"] as! Double
+            let existingScore = value["score"] as! Double
+            let displayName = value["displayName"] as! String
+            if type == "TopScores" {
+                if result.displayName == displayName {
+                    if score > existingScore {
+                        let scoreRef = self.ref.child(path).child(key as! String)
+                        scoreRef.setValue(result.toAnyObject())
+                        return
+                    }
+                }
+            }
             if score < min {
                 min = score
                 potentialKeyToRemove = key as! String
             }
         }
+        
         if score > min && data.count == scoresAllowed {
             let scoreRef = self.ref.child(path).childByAutoId()
             scoreRef.setValue(result.toAnyObject())
@@ -220,7 +228,6 @@ class FirebaseClient: NSObject {
             try FIRAuth.auth()?.signOut()
             let loginVC = vc.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             vc.present(loginVC, animated: false, completion: nil)
-            print("successfully signed out")
         } catch let signOutError as NSError {
             print("Error signing out: \(signOutError)")
         }
