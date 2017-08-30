@@ -12,6 +12,7 @@ import Firebase
 class ScoresViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var myTableView: UITableView!
+    var refreshControl: UIRefreshControl!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let screenRect = UIScreen.main.bounds
@@ -19,6 +20,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     
     var scope: UISegmentedControl!
     var level: UISegmentedControl!
+    var scopeIndex = 0
     var levelIndex = 0
     var homeButton: UIButton!
     var label: UILabel!
@@ -53,7 +55,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         scope.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         scope.frame = CGRect(x: 10, y: 30, width: width - 20, height: 25)
         scope.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
-        scope.selectedSegmentIndex = 0
+        scope.selectedSegmentIndex = scopeIndex
         scope.apportionsSegmentWidthsByContent = true
         
         level = UISegmentedControl(items: quizTypes)
@@ -100,6 +102,13 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         view.bringSubview(toFront: myTableView)
         aiv.startAnimating()
         getDataForSelectedIndices(scope: scope.selectedSegmentIndex, level: level.selectedSegmentIndex)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: #selector(ScoresViewController.refreshScores), for: .valueChanged)
+        
+        myTableView.refreshControl = self.refreshControl
+
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull down to refresh...")
+        myTableView.refreshControl = refreshControl
         
     }
     
@@ -141,6 +150,8 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         aiv.startAnimating()
         label.text = "\(scoreTypes[scope.selectedSegmentIndex]) \(quizTypes[level.selectedSegmentIndex]) Scores"
         getDataForSelectedIndices(scope: scope.selectedSegmentIndex, level: level.selectedSegmentIndex)
+        scopeIndex = scope.selectedSegmentIndex
+        levelIndex = level.selectedSegmentIndex
     }
     
     func formattedTimestamp(ts: String) -> String {
@@ -205,6 +216,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
                         self.myTableView.isHidden = false
                         self.aiv.stopAnimating()
                         self.alreadyLoaded[scope][level] = true
+                        self.refreshControl.endRefreshing()
                     } else {
                         print(error!)
                     }
@@ -220,6 +232,11 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         appDelegate.level = "None"
         let slvc = storyboard?.instantiateViewController(withIdentifier: "SelectLevelViewController") as! SelectLevelViewController
         self.present(slvc, animated: false, completion: nil)
+    }
+    
+    func refreshScores() {
+        alreadyLoaded[scopeIndex][levelIndex] = false
+        getDataForSelectedIndices(scope: scopeIndex, level: levelIndex)
     }
 
 

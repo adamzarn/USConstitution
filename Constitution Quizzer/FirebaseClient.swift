@@ -173,19 +173,24 @@ class FirebaseClient: NSObject {
             let value = value as! NSDictionary
             let existingScore = value["score"] as! Double
             let displayName = value["displayName"] as! String
+            
             if type == "TopScores" {
                 if result.displayName == displayName {
                     if score > existingScore {
                         let scoreRef = self.ref.child(path).child(key as! String)
                         scoreRef.setValue(result.toAnyObject())
                         return
+                    } else {
+                        return
                     }
                 }
             }
-            if score < min {
-                min = score
+            
+            if existingScore < min {
+                min = existingScore
                 potentialKeyToRemove = key as! String
             }
+            
         }
         
         if score > min && data.count == scoresAllowed {
@@ -194,6 +199,7 @@ class FirebaseClient: NSObject {
             let refToDelete = self.ref.child("\(path)/\(potentialKeyToRemove)")
             refToDelete.setValue(nil)
         }
+        
         if data.count < scoresAllowed {
             let scoreRef = self.ref.child(path).childByAutoId()
             scoreRef.setValue(result.toAnyObject())
