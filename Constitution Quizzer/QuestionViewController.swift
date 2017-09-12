@@ -70,6 +70,7 @@ class QuestionViewController: UIViewController {
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
         backgroundImage.image = UIImage(named: "ConstitutionBackground2")
+        backgroundImage.alpha = 0.7
         self.view.addSubview(backgroundImage)
         
         //Constants

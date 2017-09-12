@@ -27,6 +27,7 @@
 		DBCB72CD1E1322DF00F4B6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72CC1E1322DF00F4B6F0 /* Assets.xcassets */; };
 		DBCB72D01E1322DF00F4B6F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72CE1E1322DF00F4B6F0 /* LaunchScreen.storyboard */; };
 		DBCB72F61E1323D800F4B6F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */; };
+		DBEC81981F681EED00F10CF8 /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEC81971F681EED00F10CF8 /* ScoreCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		DBCB72CF1E1322DF00F4B6F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBCB72D11E1322DF00F4B6F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DBEC81971F681EED00F10CF8 /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCell.swift; sourceTree = "<group>"; };
 		EEF8015D1B116EDC36F98408 /* Pods-Constitution QuizzerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution QuizzerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution QuizzerUITests/Pods-Constitution QuizzerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F41A5D2C79DB3E07B9F2FED0 /* Pods-Constitution QuizzerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Constitution QuizzerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Constitution QuizzerTests/Pods-Constitution QuizzerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F60C7C8997F88B832A43A77E /* Pods_Constitution_QuizzerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Constitution_QuizzerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +195,7 @@
 				DBCB72F51E1323D800F4B6F0 /* GoogleService-Info.plist */,
 				DB2C95FC1F33CE3F00FBDB99 /* Reachability.swift */,
 				DB2C95FE1F33CE8500FBDB99 /* GlobalFunctions.swift */,
+				DBEC81971F681EED00F10CF8 /* ScoreCell.swift */,
 			);
 			path = "Constitution Quizzer";
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				DBA304531E1867300023D678 /* LoginViewController.swift in Sources */,
 				DBCB72C51E1322DF00F4B6F0 /* SelectLevelViewController.swift in Sources */,
 				DBCB72C31E1322DF00F4B6F0 /* AppDelegate.swift in Sources */,
+				DBEC81981F681EED00F10CF8 /* ScoreCell.swift in Sources */,
 				DB63F89D1E1A0F3A00FB8699 /* ScoresViewController.swift in Sources */,
 				DBAEB64C1E135AF900F9A540 /* FirebaseClient.swift in Sources */,
 				DBAEB64E1E135BC000F9A540 /* Quiz.swift in Sources */,

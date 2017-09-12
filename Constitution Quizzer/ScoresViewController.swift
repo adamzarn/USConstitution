@@ -32,7 +32,6 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     var allPatriotScores: [Result]! = []
     var allFoundingFatherScores: [Result]! = []
     
-    var scoreTypes = ["My", "All"]
     var quizTypes = ["Citizen", "Patriot", "Founding Father"]
     
     var aiv: UIActivityIndicatorView!
@@ -46,12 +45,13 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         
         backgroundImage = UIImageView(frame: CGRect(x: -20, y: -20, width: screenRect.width + 40, height: screenRect.height + 40))
         backgroundImage.image = UIImage(named: "ConstitutionBackground2")
+        backgroundImage.alpha = 0.7
         self.view.addSubview(backgroundImage)
         
         let width = screenRect.width
         let height = screenRect.height
         
-        scope = UISegmentedControl(items: ["My Scores", "All Scores"])
+        scope = UISegmentedControl(items: ["My Scores", "Leaderboard"])
         scope.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         scope.frame = CGRect(x: 10, y: 30, width: width - 20, height: 25)
         scope.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for:.valueChanged)
@@ -98,6 +98,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
         
         myTableView.isHidden = true
         myTableView.backgroundColor = .clear
+        myTableView.allowsSelection = false
         self.view.addSubview(myTableView)
         view.bringSubview(toFront: myTableView)
         aiv.startAnimating()
@@ -134,13 +135,11 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        if scope.selectedSegmentIndex == 0 {
-            cell.textLabel?.text = "\(indexPath.row + 1). \(currentScores[indexPath.row].score)"
-        } else {
-            cell.textLabel?.text = "\(indexPath.row + 1). \(currentScores[indexPath.row].displayName) - \(String(currentScores[indexPath.row].score))"
-        }
-        cell.detailTextLabel?.text = formattedTimestamp(ts: currentScores[indexPath.row].timestamp)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell") as! ScoreCell
+        
+        let currentScore = currentScores[indexPath.row]
+        cell.setUpCell(row: indexPath.row, score: "\(currentScore.score)", date: formattedTimestamp(ts: currentScore.timestamp), user: currentScore.displayName)
+        
         cell.backgroundColor = .clear
         return cell
     }
@@ -148,7 +147,11 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
     func segmentedControlValueChanged(_ sender: AnyObject) {
         myTableView.isHidden = true
         aiv.startAnimating()
-        label.text = "\(scoreTypes[scope.selectedSegmentIndex]) \(quizTypes[level.selectedSegmentIndex]) Scores"
+        if scope.selectedSegmentIndex == 0 {
+            label.text = "My \(quizTypes[level.selectedSegmentIndex]) Scores"
+        } else {
+            label.text = "\(quizTypes[level.selectedSegmentIndex]) Leaderboard"
+        }
         getDataForSelectedIndices(scope: scope.selectedSegmentIndex, level: level.selectedSegmentIndex)
         scopeIndex = scope.selectedSegmentIndex
         levelIndex = level.selectedSegmentIndex
@@ -214,6 +217,7 @@ class ScoresViewController: UIViewController, UITableViewDataSource, UITableView
                         self.currentScores = self.resultArrays[scope][level]
                         self.myTableView.reloadData()
                         self.myTableView.isHidden = false
+                        self.myTableView.setContentOffset(CGPoint.zero, animated: false)
                         self.aiv.stopAnimating()
                         self.alreadyLoaded[scope][level] = true
                         self.refreshControl.endRefreshing()
